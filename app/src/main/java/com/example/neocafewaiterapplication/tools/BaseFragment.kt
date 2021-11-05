@@ -1,5 +1,6 @@
 package com.example.neocafewaiterapplication.tools
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ abstract class BaseFragment <Binding: ViewBinding> : Fragment() {
 
     private var _binding:Binding? = null
     val binding get() = _binding!!
+    val sharedPref by lazy { activity?.getPreferences(Context.MODE_PRIVATE) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +20,7 @@ abstract class BaseFragment <Binding: ViewBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = inflateView(inflater, container)
+        setUpAppBar()
         return binding.root
     }
 
@@ -27,4 +30,6 @@ abstract class BaseFragment <Binding: ViewBinding> : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    abstract fun setUpAppBar()
 }

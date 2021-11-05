@@ -3,10 +3,132 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/new_order_nav_graph"
-    app:startDestination="@id/orderFragment2">
+    app:startDestination="@id/newOrderFragment">
     <fragment
-        android:id="@+id/orderFragment2"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.order.OrderFragment"
-        android:label="fragment_order"
-        tools:layout="@layout/fragment_order" />
+        android:id="@+id/newOrderFragment"
+        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.NewOrderFragment"
+        android:label="fragment_new_order"
+        tools:layout="@layout/fragment_new_order" >
+        <action
+            android:id="@+id/action_newOrderFragment_to_newOrderMenu"
+            app:destination="@id/newOrderMenu"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_in"
+            app:popEnterAnim="@anim/right_in"
+            app:popExitAnim="@anim/left_in" />
+        <action
+            android:id="@+id/action_newOrderFragment_to_notificationFragment3"
+            app:destination="@id/notificationFragment3"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+        <action
+            android:id="@+id/action_newOrderFragment_to_userFragment2"
+            app:destination="@id/userFragment2"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+        <argument
+            android:name="fromFinal"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/newOrderMenu"
+        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.new_order_menu.NewOrderMenu"
+        android:label="fragment_new_order_menu"
+        tools:layout="@layout/fragment_new_order_menu" >
+        <argument
+            android:name="table_number"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_newOrderMenu_to_notificationFragment3"
+            app:destination="@id/notificationFragment3"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+        <action
+            android:id="@+id/action_newOrderMenu_to_newOrderProducts"
+            app:destination="@id/newOrderProducts"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_in"
+            app:popEnterAnim="@anim/right_in"
+            app:popExitAnim="@anim/left_in" />
+        <action
+            android:id="@+id/action_newOrderMenu_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment3"
+        android:name="com.example.neocafewaiterapplication.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/newOrderProducts"
+        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.new_order_products.NewOrderProducts"
+        android:label="fragment_new_order_products"
+        tools:layout="@layout/fragment_new_order_products" >
+        <action
+            android:id="@+id/action_newOrderProducts_to_notificationFragment3"
+            app:destination="@id/notificationFragment3"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <argument
+            android:name="table_number"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_newOrderProducts_to_finalReceiptFragment"
+            app:destination="@id/finalReceiptFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_in"
+            app:popEnterAnim="@anim/right_in"
+            app:popExitAnim="@anim/left_in" />
+        <action
+            android:id="@+id/action_newOrderProducts_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/finalReceiptFragment"
+        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.final_receipt.FinalReceiptFragment"
+        android:label="fragment_final_receipt"
+        tools:layout="@layout/fragment_final_receipt" >
+        <action
+            android:id="@+id/action_finalReceiptFragment_to_notificationFragment3"
+            app:destination="@id/notificationFragment3"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+        <action
+            android:id="@+id/action_finalReceiptFragment_to_newOrderFragment"
+            app:destination="@id/newOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment2"
+        android:name="com.example.neocafewaiterapplication.user.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <argument
+        android:name="fromFinal"
+        android:defaultValue="false" />
 </navigation>

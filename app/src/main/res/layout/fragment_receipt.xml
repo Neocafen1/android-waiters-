@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".bottom_navigation.order.receipt.ReceiptFragment">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10_dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/all"
+                style="@style/Chip_Custom_Receipt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all"
+                app:chipBackgroundColor="@color/all_chip_background" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/new_order"
+                style="@style/Chip_Custom_Receipt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/New"
+                app:chipBackgroundColor="@color/new_chip_background" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/in_process"
+                style="@style/Chip_Custom_Receipt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/in_process"
+                android:textColor="@color/chip_text_color"
+                app:checkedIconTint="#343545"
+                app:chipBackgroundColor="@color/in_process_chip_background" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/ready"
+                style="@style/Chip_Custom_Receipt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ready"
+                app:chipBackgroundColor="@color/ready_chip_background" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/canceled"
+                style="@style/Chip_Custom_Receipt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/canceled"
+                app:chipBackgroundColor="@color/canceled_chip_background" />
+
+
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layoutAnimation="@anim/right_layout_animation"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_10_dp"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

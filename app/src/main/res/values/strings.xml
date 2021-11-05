@@ -10,7 +10,7 @@
     <string name="wrong_code">Неверный код*</string>
     <string name="personal_info">Личные данные</string>
     <string name="name">Имя</string>
-    <string name="ur_name">Ваша имя</string>
+    <string name="ur_name">Ваше имя</string>
     <string name="Surname">Фамилия</string>
     <string name="ur_surname">Ваша фамилия</string>
     <string name="birthday">Дата рождения</string>
@@ -26,4 +26,22 @@
     <string name="dessert">Десерты</string>
     <string name="notification">Уведомление</string>
     <string name="clear_all">Очистить все</string>
+    <string name="chairs">Столы</string>
+    <string name="orders">Заказы</string>
+    <string name="free">Свободно</string>
+    <string name="closed">Занято</string>
+    <string name="all">Все</string>
+    <string name="New">Новый</string>
+    <string name="in_process">В процессе</string>
+    <string name="ready">Готово</string>
+    <string name="canceled">Отменено</string>
+    <string name="new_order">Новый заказ</string>
+    <string name="result">Итого</string>
+    <string name="work_time">График работы</string>
+    <string name="take_order">Оформить заказ</string>
+    <string name="day_time">Дневная смена с 09:00 до 16:00</string>
+    <string name="night_work_time">Вечерняя смена с 16:00 до 22:00</string>
+    <string name="day_off">Выходной</string>
+    <string name="if_message_null">Если код не пришел, нажмите кнопку отправить повторно</string>
+    <string name="send_again">Отправить повторно</string>
 </resources>

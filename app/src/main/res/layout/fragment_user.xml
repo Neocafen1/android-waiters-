@@ -5,34 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".bottom_navigation.UserFragment">
+    tools:context=".user.UserFragment">
 
     <Toolbar
         android:layout_width="match_parent"
-        android:background="@color/main_background_color"
-        android:layout_height="@dimen/margin_50_dp">
+        android:layout_height="@dimen/margin_50_dp"
+        android:background="@color/main_background_color">
 
         <ImageView
             android:id="@+id/back_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
+            android:layout_gravity="center_vertical"
             android:clickable="true"
-            android:layout_gravity="center_vertical"/>
+            android:src="@drawable/ic_back" />
 
         <TextView
             style="@style/TextView_Roboto_18sp"
-            tools:text="Профиль"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            tools:text="Профиль" />
 
         <ImageView
             android:id="@+id/save"
-            android:clickable="false"
-            android:src="@drawable/ic_pencil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="@dimen/margin_10_dp"
-            android:layout_gravity="end|center_vertical"/>
+            android:clickable="false"
+            android:src="@drawable/ic_pencil" />
 
 
     </Toolbar>
@@ -40,11 +40,10 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:background="@color/main_background_color">
+        android:background="@color/main_background_color"
+        android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            style="@style/Constraint_Layout_Default">
+        <androidx.constraintlayout.widget.ConstraintLayout style="@style/Constraint_Layout_Default">
 
             <TextView
                 android:id="@+id/rating"
@@ -57,7 +56,7 @@
 
             <TextView
                 android:id="@+id/textView6"
-                style="@style/TextView_Roboto_14sp"
+                style="@style/TextView_Roboto_Thin_14sp"
                 android:layout_marginStart="@dimen/margin_30_dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/name"
@@ -67,27 +66,27 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 style="@style/CardView_Default"
-                app:cardCornerRadius="@dimen/margin_16_dp"
                 android:layout_marginTop="@dimen/margin_5_dp"
                 android:backgroundTint="@color/card_view_background"
+                app:cardCornerRadius="@dimen/margin_16_dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6">
 
                 <EditText
                     android:id="@+id/name"
-                    android:inputType="textCapWords"
                     style="@style/EditText_Default"
-                    android:textColor="@color/white"
-                    android:textCursorDrawable="@drawable/custom_edit_text_cursor"
+                    android:layout_marginStart="@dimen/margin_16_dp"
+                    android:inputType="textCapWords"
                     android:textAlignment="textStart"
-                    android:layout_marginStart="@dimen/margin_16_dp"/>
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/custom_edit_text_cursor" />
 
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView2"
-                style="@style/TextView_Roboto_14sp"
+                style="@style/TextView_Roboto_Thin_14sp"
                 android:layout_marginStart="@dimen/margin_30_dp"
                 android:layout_marginTop="@dimen/margin_20_dp"
                 android:text="@string/Surname"
@@ -97,27 +96,27 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
                 style="@style/CardView_Default"
-                app:cardCornerRadius="@dimen/margin_16_dp"
                 android:layout_marginTop="@dimen/margin_5_dp"
                 android:backgroundTint="@color/card_view_background"
+                app:cardCornerRadius="@dimen/margin_16_dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2">
 
                 <EditText
                     android:id="@+id/surname"
-                    android:inputType="textCapWords"
                     style="@style/EditText_Default"
-                    android:textCursorDrawable="@drawable/custom_edit_text_cursor"
-                    android:textColor="@color/white"
+                    android:layout_marginStart="@dimen/margin_16_dp"
+                    android:inputType="textCapWords"
                     android:textAlignment="textStart"
-                    android:layout_marginStart="@dimen/margin_16_dp"/>
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/custom_edit_text_cursor" />
 
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView3"
-                style="@style/TextView_Roboto_14sp"
+                style="@style/TextView_Roboto_Thin_14sp"
                 android:layout_marginStart="@dimen/margin_30_dp"
                 android:layout_marginTop="@dimen/margin_20_dp"
                 android:text="@string/number_phone"
@@ -127,9 +126,9 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView3"
                 style="@style/CardView_Default"
-                app:cardCornerRadius="@dimen/margin_16_dp"
                 android:layout_marginTop="@dimen/margin_5_dp"
                 android:backgroundTint="@color/card_view_background"
+                app:cardCornerRadius="@dimen/margin_16_dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3">
@@ -138,13 +137,13 @@
                     android:id="@+id/number"
                     style="@style/TextView_Thin_18sp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/margin_16_dp"/>
+                    android:layout_marginStart="@dimen/margin_16_dp" />
 
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView4"
-                style="@style/TextView_Roboto_14sp"
+                style="@style/TextView_Roboto_Thin_14sp"
                 android:layout_marginStart="@dimen/margin_30_dp"
                 android:layout_marginTop="@dimen/margin_20_dp"
                 android:text="@string/birthday"
@@ -152,10 +151,11 @@
                 app:layout_constraintTop_toBottomOf="@id/cardView3" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView5"
                 style="@style/CardView_Default"
-                app:cardCornerRadius="@dimen/margin_16_dp"
                 android:layout_marginTop="@dimen/margin_5_dp"
                 android:backgroundTint="@color/card_view_background"
+                app:cardCornerRadius="@dimen/margin_16_dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4">
@@ -164,12 +164,81 @@
                     android:id="@+id/birthday"
                     style="@style/TextView_Thin_18sp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/margin_16_dp"/>
+                    android:layout_marginStart="@dimen/margin_16_dp" />
 
             </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:id="@+id/time_work"
+                style="@style/TextView_Roboto_20sp"
+                android:layout_marginTop="@dimen/margin_25_dp"
+                android:text="@string/work_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView5" />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView7"
+                style="@style/work_time_card_view"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="@dimen/margin_20_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/time_work" />
 
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/TextView_Roboto_Thin_16sp"
+                android:layout_marginStart="@dimen/margin_10_dp"
+                android:layout_marginTop="@dimen/margin_30_dp"
+                android:text="@string/day_time"
+                app:layout_constraintStart_toEndOf="@+id/cardView7"
+                app:layout_constraintTop_toBottomOf="@id/time_work" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView8"
+                style="@style/work_time_card_view"
+                android:backgroundTint="@color/night_work_time"
+                app:cardCornerRadius="@dimen/margin_10_dp"
+                app:cardElevation="@dimen/margin_20_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView7" />
+
+            <TextView
+                style="@style/TextView_Roboto_Thin_16sp"
+                android:layout_marginStart="@dimen/margin_10_dp"
+                android:layout_marginTop="@dimen/margin_30_dp"
+                android:text="@string/night_work_time"
+                app:layout_constraintStart_toEndOf="@+id/cardView8"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView9"
+                style="@style/work_time_card_view"
+                android:backgroundTint="@color/main_enable_color"
+                app:cardCornerRadius="@dimen/margin_10_dp"
+                app:cardElevation="@dimen/margin_20_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView8" />
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/TextView_Roboto_Thin_16sp"
+                android:layout_marginStart="@dimen/margin_10_dp"
+                android:layout_marginTop="@dimen/margin_30_dp"
+                android:text="@string/day_off"
+                app:layout_constraintStart_toEndOf="@+id/cardView9"
+                app:layout_constraintTop_toBottomOf="@+id/cardView8" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="@dimen/margin_20_dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

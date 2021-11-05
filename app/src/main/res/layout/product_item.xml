@@ -6,6 +6,7 @@
     style="@style/Product_Card_View">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
         style="@style/Constraint_Layout_Default"
         android:background="@color/card_view_background">
 

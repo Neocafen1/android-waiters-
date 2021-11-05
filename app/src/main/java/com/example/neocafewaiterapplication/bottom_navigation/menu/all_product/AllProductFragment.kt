@@ -4,21 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.neocafeteae1prototype.data.models.Resource
 import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentAllProductBinding
 import com.example.neocafewaiterapplication.tools.BaseFragment
+import com.example.neocafewaiterapplication.tools.gone
 import com.example.neocafewaiterapplication.tools.recycler_adapter.AllProductsRecyclerAdapter
-import com.example.neocafewaiterapplication.tools.sealed_classes.AllModels
+import com.example.neocafewaiterapplication.tools.visible
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class AllProductFragment : BaseFragment<FragmentAllProductBinding>() {
 
-    private val recyclerAdapter by lazy {AllProductsRecyclerAdapter()}
+    private val recyclerAdapter by lazy {AllProductsRecyclerAdapter(null)}
     private val args:AllProductFragmentArgs by navArgs()
-    private val viewModel by lazy {ViewModelProvider(this).get(AllProductViewModel::class.java)}
+    val viewModel: AllProductViewModel by viewModel()
 
     private val mapOfCategory = mutableMapOf<String, Int>(
         "Выпечка" to R.id.bakery, "Кофе" to R.id.coffee, "Чай" to R.id.tea,
@@ -27,26 +29,29 @@ class AllProductFragment : BaseFragment<FragmentAllProductBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpRecycler()
+        setUpAppBar()
+
         with(binding){
-            recycler.apply {
-                layoutManager = LinearLayoutManager(requireContext())
-                adapter = recyclerAdapter
-            }
-
-            include.notification.setOnClickListener { findNavController().navigate(AllProductFragmentDirections.actionAllProductFragmentToNotificationFragment()) }
-
             val viewId = mapOfCategory[args.category] // срабатывает при передачи категории
             if (viewId != null) {
                 binding.chipGroup.check(viewId) // enable данной категории
                 recyclerSetList(viewId)
             }
 
-            binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            chipGroup.setOnCheckedChangeListener { group, checkedId ->
                 recyclerSetList(checkedId) //слушатель изменений chip
             }
         }
 
 
+    }
+
+    private fun setUpRecycler() {
+        binding.recycler.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = recyclerAdapter
+        }
     }
 
     private fun recyclerSetList(checkedId: Int) {
@@ -58,9 +63,15 @@ class AllProductFragment : BaseFragment<FragmentAllProductBinding>() {
             R.id.desserts -> "Десерты"
             else -> ""
         }
-        viewModel.getList().observe(viewLifecycleOwner, {
-            viewModel.sort(checkedText, it as MutableList<AllModels.Product>)
-            recyclerAdapter.setList(viewModel.getSortedList(), checkedText)
+        viewModel.list.observe(viewLifecycleOwner, {
+            when(it){
+                is Resource.Success -> {
+                    recyclerAdapter.setList(viewModel.sort(checkedText, it.value), checkedText)
+                    binding.progress.gone()
+                }
+                is Resource.Loading -> binding.progress.visible()
+            }
+
         })
     }
 
@@ -69,6 +80,14 @@ class AllProductFragment : BaseFragment<FragmentAllProductBinding>() {
         container: ViewGroup?
     ): FragmentAllProductBinding {
         return FragmentAllProductBinding.inflate(inflater)
+    }
+
+    override fun setUpAppBar() {
+        with(binding.include){
+            notification.setOnClickListener { findNavController().navigate(AllProductFragmentDirections.actionAllProductFragmentToNotificationFragment()) }
+            user.setOnClickListener { findNavController().navigate(AllProductFragmentDirections.actionAllProductFragmentToUserFragment3()) }
+        }
+
     }
 
 

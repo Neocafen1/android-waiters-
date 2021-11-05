@@ -23,7 +23,7 @@
             android:id="@+id/textView2"
             style="@style/Title_Text_34sp"
             android:layout_marginTop="@dimen/margin_70_dp"
-            android:text="Код"
+            android:text="Смс код"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/back_icon" />
@@ -58,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/type_code"
-            app:length="4"
+            app:length="6"
             app:otp_box_background="@color/white"
             app:otp_text_size="38sp" />
 
@@ -72,8 +72,36 @@
             android:text="@string/confirm"
             android:background="@drawable/button_disable_custom_item"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/back_icon"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/otp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            style="@style/TextView_Roboto_14sp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_30_dp"
+            android:text="@string/if_message_null"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/margin_16_dp"
+            android:layout_marginEnd="@dimen/margin_16_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirm" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/repeat"
+            style="@style/Button_Default"
+            android:layout_marginTop="@dimen/margin_25_dp"
+            android:layout_marginStart="@dimen/margin_16_dp"
+            android:layout_marginEnd="@dimen/margin_16_dp"
+            android:enabled="false"
+            android:text="@string/send_again"
+            android:background="@drawable/button_disable_custom_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

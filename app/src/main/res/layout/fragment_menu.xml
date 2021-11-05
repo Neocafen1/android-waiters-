@@ -11,10 +11,11 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/menu_toolbar" />
+        layout="@layout/appbar_with_user_and_notification" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
+        android:layoutAnimation="@anim/layout_animation"
         android:layout_marginTop="@dimen/margin_20_dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

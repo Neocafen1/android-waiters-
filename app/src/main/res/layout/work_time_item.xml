@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/margin_70_dp"
+    android:layout_height="110dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="@dimen/margin_10_dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/ronded_bottom_navigation"
+    android:backgroundTint="#010C25">
+
+    <TextView
+        android:id="@+id/day"
+        style="@style/TextView_Roboto_16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/margin_20_dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Пн" />
+
+    <TextView
+        android:id="@+id/morning_time"
+        style="@style/TextView_Roboto_16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/day"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="8:00" />
+
+    <TextView
+        android:id="@+id/evening_time"
+        style="@style/TextView_Roboto_16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/morning_time"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="8:00" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

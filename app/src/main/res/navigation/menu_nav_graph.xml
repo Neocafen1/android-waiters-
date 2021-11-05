@@ -15,7 +15,14 @@
             app:destination="@id/allProductFragment" />
         <action
             android:id="@+id/action_menuFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
+            app:destination="@id/notificationFragment"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+        <action
+            android:id="@+id/action_menuFragment_to_userFragment3"
+            app:destination="@id/userFragment3" />
     </fragment>
     <fragment
         android:id="@+id/allProductFragment"
@@ -27,11 +34,23 @@
             app:argType="string" />
         <action
             android:id="@+id/action_allProductFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
+            app:destination="@id/notificationFragment"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
+        <action
+            android:id="@+id/action_allProductFragment_to_userFragment3"
+            app:destination="@id/userFragment3" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.menu.notification.NotificationFragment"
+        android:name="com.example.neocafewaiterapplication.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/userFragment3"
+        android:name="com.example.neocafewaiterapplication.user.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
 </navigation>

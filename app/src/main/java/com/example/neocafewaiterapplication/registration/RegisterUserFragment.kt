@@ -13,15 +13,12 @@ import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentRegisterUserBinding
 import com.example.neocafewaiterapplication.tools.BaseFragment
 import com.example.neocafewaiterapplication.tools.Consts
-import com.vicmikhailau.maskededittext.MaskedFormatter
+import com.google.firebase.auth.FirebaseAuth
 
 
 class RegisterUserFragment : BaseFragment<FragmentRegisterUserBinding>() {
 
-    override fun inflateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentRegisterUserBinding {
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup?): FragmentRegisterUserBinding {
         return FragmentRegisterUserBinding.inflate(inflater)
     }
 
@@ -29,13 +26,9 @@ class RegisterUserFragment : BaseFragment<FragmentRegisterUserBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-
-            binding.backIcon.setOnClickListener { findNavController().navigateUp() }
-
-
             birthday.addTextChangedListener {
                 if (it?.length!! >= 10 && name.text.length >= 3 && surname.text.length >= 3) {
-                    binding.button.apply {
+                    button.apply {
                         isEnabled = true
                         background = ContextCompat.getDrawable(
                             requireContext(),
@@ -43,7 +36,7 @@ class RegisterUserFragment : BaseFragment<FragmentRegisterUserBinding>() {
                         )
                     }
                 } else {
-                    binding.button.apply {
+                    button.apply {
                         isEnabled = false
                         background = ContextCompat.getDrawable(
                             requireContext(),
@@ -57,7 +50,6 @@ class RegisterUserFragment : BaseFragment<FragmentRegisterUserBinding>() {
                 val surname = surname.text.toString()
                 val birthDay = birthday.text.toString()
                 insertDataToSharedPreference(name, surname, birthDay)
-
                 findNavController().navigate(RegisterUserFragmentDirections.actionRegisterUserFragmentToBottomNavigationFragment())
             }
         }
@@ -66,11 +58,15 @@ class RegisterUserFragment : BaseFragment<FragmentRegisterUserBinding>() {
 
     @SuppressLint("CommitPrefEdits")
     private fun insertDataToSharedPreference(name: String, surname: String, birthDay: String) {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(sharedPref.edit()) {
+        with(sharedPref!!.edit()) {
             putString(Consts.NAME, name)
             putString(Consts.SURNAME, surname)
             putString(Consts.BIRTHDAY, birthDay)
+            putBoolean(Consts.REGISTRATION, true)
+
         }.apply()
     }
+
+    override fun setUpAppBar() {
+        binding.backIcon.setOnClickListener { findNavController().navigateUp() }    }
 }

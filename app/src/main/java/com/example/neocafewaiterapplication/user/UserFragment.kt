@@ -1,4 +1,4 @@
-package com.example.neocafewaiterapplication.bottom_navigation
+package com.example.neocafewaiterapplication.user
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,16 +6,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentUserBinding
 import com.example.neocafewaiterapplication.tools.BaseFragment
 import com.example.neocafewaiterapplication.tools.Consts
 import com.example.neocafewaiterapplication.tools.alert_dialog.DoneCustomAlertDialog
+import com.example.neocafewaiterapplication.tools.recycler_adapter.MainRecyclerViewAdapter
 
 class UserFragment : BaseFragment<FragmentUserBinding>() {
 
     private var isActiv = false
+    private val recyclerAdapter by lazy {MainRecyclerViewAdapter(null)}
+    private val viewModel by lazy {ViewModelProvider(this).get(UserViewModel::class.java)}
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup?): FragmentUserBinding {
         return FragmentUserBinding.inflate(inflater)
@@ -23,7 +28,8 @@ class UserFragment : BaseFragment<FragmentUserBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setUpRecycler()
+        setUpUi()
 
         with(binding) {
             name.apply {
@@ -46,21 +52,24 @@ class UserFragment : BaseFragment<FragmentUserBinding>() {
                     name.isFocusable = false
                     surname.isFocusable = false
                     insertDataToSharedPreference(name.text.toString(), surname.text.toString())
-                    DoneCustomAlertDialog().show(childFragmentManager, "TAG")
+                    DoneCustomAlertDialog("Изменение сохранены").show(childFragmentManager, "TAG")
                 }
             }
 
         }
-        setUpUi()
+    }
 
-
+    private fun setUpRecycler() {
+        binding.recycler.apply {
+            adapter = recyclerAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+        recyclerAdapter.setList(viewModel.listWorkTime)
     }
 
 
     private fun setUpUi() {
         with(binding) {
-
-
             val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
             val userName = sharedPref.getString(Consts.NAME, "null")
             val userSurname = sharedPref.getString(Consts.SURNAME, "null")
@@ -71,14 +80,8 @@ class UserFragment : BaseFragment<FragmentUserBinding>() {
             surname.setText(userSurname)
             number.text = numberPhone
             birthday.text = userBirthday
-
-
-            backIcon.setOnClickListener { findNavController().navigateUp() }
-
         }
-
     }
-
 
     @SuppressLint("CommitPrefEdits")
     private fun insertDataToSharedPreference(name: String, surname: String) {
@@ -87,5 +90,9 @@ class UserFragment : BaseFragment<FragmentUserBinding>() {
             putString(Consts.NAME, name)
             putString(Consts.SURNAME, surname)
         }.apply()
+    }
+
+    override fun setUpAppBar() {
+        binding.backIcon.setOnClickListener { findNavController().navigateUp() }
     }
 }

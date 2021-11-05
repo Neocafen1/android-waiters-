@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/margin_80_dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ronded_bottom_navigation"
+    android:layout_marginStart="@dimen/margin_16_dp"
+    android:layout_marginEnd="@dimen/margin_16_dp"
+    android:layout_marginTop="@dimen/margin_10_dp">
+
+    <TextView
+        android:id="@+id/order_number"
+        style="@style/TextView_Roboto_18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="@dimen/radius_8_dp"
+        tools:text="Заказ #1" />
+
+    <TextView
+        android:id="@+id/table_number"
+        style="@style/TextView_Roboto_14sp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="@dimen/radius_8_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Стол #5" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/status_card"
+        android:layout_width="95dp"
+        android:layout_height="@dimen/margin_30_dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="@dimen/margin_16_dp"
+        android:layout_marginEnd="@dimen/margin_16_dp"
+        android:layout_marginTop="@dimen/radius_8_dp"
+        tools:backgroundTint="@color/green">
+
+        <TextView
+            android:id="@+id/status_text"
+            style="@style/TextView_Roboto_16sp"
+            tools:text="Новый"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/time"
+        style="@style/TextView_Roboto_14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="15:24"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="@dimen/margin_10_dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

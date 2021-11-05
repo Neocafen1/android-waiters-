@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/textView"
-            style="@style/TextView_Roboto_18sp"
+            style="@style/TextView_Thin_18sp"
             android:layout_marginTop="@dimen/margin_50_dp"
             android:text="@string/number_phone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,10 +41,9 @@
 
             <TextView
                 android:id="@+id/number_code"
-                android:visibility="gone"
                 style="@style/TextView_Roboto_18sp"
                 android:text="@string/kg_number_code"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:layout_marginStart="@dimen/margin_5_dp"
                 android:layout_gravity="center_vertical"/>
 

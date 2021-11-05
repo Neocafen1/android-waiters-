@@ -11,20 +11,20 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/menu_toolbar"/>
+        layout="@layout/appbar_with_user_and_notification" />
 
-           <androidx.core.widget.NestedScrollView
+    <HorizontalScrollView
                android:layout_width="match_parent"
                android:scrollbars="none"
                android:layout_height="wrap_content">
 
                <com.google.android.material.chip.ChipGroup
                    android:id="@+id/chip_group"
-                   android:layout_width="match_parent"
+                   android:layout_width="wrap_content"
                    app:selectionRequired="true"
                    app:singleLine="true"
                    app:singleSelection="true"
-                   android:layout_height="@dimen/margin_50_dp">
+                   android:layout_height="wrap_content">
 
                    <com.google.android.material.chip.Chip
                        android:id="@+id/coffee"
@@ -54,10 +54,18 @@
 
                </com.google.android.material.chip.ChipGroup>
 
-           </androidx.core.widget.NestedScrollView>
+           </HorizontalScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/main_enable_color"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
+
         android:layoutAnimation="@anim/right_layout_animation"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"

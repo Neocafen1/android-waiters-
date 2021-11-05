@@ -18,6 +18,7 @@
         app:srcCompat="@drawable/avd_done" />
 
     <TextView
+        android:id="@+id/title"
         style="@style/TextView_Roboto_18sp"
         android:text="Сохранение изменены"
         android:layout_marginTop="@dimen/margin_10_dp"

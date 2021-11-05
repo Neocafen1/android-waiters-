@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/chairs_nav_graph"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="@string/chairs" />
+    <item
+        android:id="@+id/receipt_nav_graph"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="@string/orders" />
+
+
+</menu>

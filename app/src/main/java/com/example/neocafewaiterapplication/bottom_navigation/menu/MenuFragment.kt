@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.neocafewaiterapplication.databinding.FragmentMenuBinding
@@ -13,17 +12,18 @@ import com.example.neocafewaiterapplication.tools.BaseFragment
 import com.example.neocafewaiterapplication.tools.delegates.RecyclerItemClick
 import com.example.neocafewaiterapplication.tools.recycler_adapter.MainRecyclerViewAdapter
 import com.example.neocafewaiterapplication.tools.sealed_classes.AllModels
-import com.example.neocafewaiterapplication.tools.showToast
 
 
-class   MenuFragment : BaseFragment<FragmentMenuBinding>(), RecyclerItemClick {
+class MenuFragment : BaseFragment<FragmentMenuBinding>(), RecyclerItemClick {
 
     private lateinit var recyclerAdapter: MainRecyclerViewAdapter
-    private val viewModel by lazy { ViewModelProvider(this).get(MenuViewModel::class.java) }
+    private val viewModel: MenuViewModel by activityViewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpAppBar()
+
         recyclerAdapter = MainRecyclerViewAdapter(this)
 
         binding.recycler.apply {
@@ -32,7 +32,6 @@ class   MenuFragment : BaseFragment<FragmentMenuBinding>(), RecyclerItemClick {
         }
         recyclerAdapter.setList(viewModel.getList())
 
-        binding.include.notification.setOnClickListener { findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToNotificationFragment()) }
 
     }
 
@@ -42,7 +41,16 @@ class   MenuFragment : BaseFragment<FragmentMenuBinding>(), RecyclerItemClick {
 
     override fun clickListener(model: AllModels) {
         model as AllModels.Menu
-        findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToAllProductFragment(model.category))
+        findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToAllProductFragment(model.category)
+        )
 
+    }
+
+    override fun setUpAppBar() {
+        with(binding.include){
+            notification.setOnClickListener { findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToNotificationFragment()) }
+            binding.include.title.text = "Меню"
+            user.setOnClickListener { findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToUserFragment3()) }
+        }
     }
 }

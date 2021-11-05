@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "164415614935",
+    "project_id": "neocafe1-f3060",
+    "storage_bucket": "neocafe1-f3060.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164415614935:android:eca47758d5238b45d6a592",
+        "android_client_info": {
+          "package_name": "com.example.firebasetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164415614935-fck8m93oh2a8furlg4ne9ec5pd6hbpjp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebasetest",
+            "certificate_hash": "3c3949b22ffae3e95cd9389a3c33a42927a93cfa"
+          }
+        },
+        {
+          "client_id": "164415614935-7prage5jtrdkqo5dm3c611k9i55g124v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDogXb5eOGCmPNcnhV0TUbz3gOc_IRku10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164415614935-7prage5jtrdkqo5dm3c611k9i55g124v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164415614935:android:63ca9869a2cd34b6d6a592",
+        "android_client_info": {
+          "package_name": "com.example.neocafeteae1prototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164415614935-tpjt6vnn77usm93ara9ujplm7sudshfd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.neocafeteae1prototype",
+            "certificate_hash": "3c3949b22ffae3e95cd9389a3c33a42927a93cfa"
+          }
+        },
+        {
+          "client_id": "164415614935-7prage5jtrdkqo5dm3c611k9i55g124v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDogXb5eOGCmPNcnhV0TUbz3gOc_IRku10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164415614935-7prage5jtrdkqo5dm3c611k9i55g124v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164415614935:android:1859d36b14ea1b31d6a592",
+        "android_client_info": {
+          "package_name": "com.example.neocafewaiterapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164415614935-7prage5jtrdkqo5dm3c611k9i55g124v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDogXb5eOGCmPNcnhV0TUbz3gOc_IRku10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164415614935-7prage5jtrdkqo5dm3c611k9i55g124v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

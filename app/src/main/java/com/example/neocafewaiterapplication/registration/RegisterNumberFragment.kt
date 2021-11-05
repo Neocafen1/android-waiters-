@@ -3,7 +3,6 @@ package com.example.neocafewaiterapplication.registration
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +17,7 @@ import com.vicmikhailau.maskededittext.MaskedFormatter
 
 
 class RegisterNumberFragment : BaseFragment<FragmentRegisterNumberBinding>() {
-    override fun inflateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentRegisterNumberBinding {
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup?): FragmentRegisterNumberBinding {
         return FragmentRegisterNumberBinding.inflate(inflater)
     }
 
@@ -52,7 +48,7 @@ class RegisterNumberFragment : BaseFragment<FragmentRegisterNumberBinding>() {
 
         binding.next.setOnClickListener {
             val formatter = MaskedFormatter("###-###-###").formatString(binding.numberEditText.text.toString())?.unMaskedString
-            formatter?.showToast(requireContext(), Toast.LENGTH_LONG)
+            formatter?.clearAll(requireContext(), Toast.LENGTH_LONG)
             insertDataToSharedPreference(formatter!!)
             findNavController().navigate(RegisterNumberFragmentDirections.actionRegisterNumberFragmentToOTPFragment(formatter))
         }
@@ -65,5 +61,9 @@ class RegisterNumberFragment : BaseFragment<FragmentRegisterNumberBinding>() {
         with(sharedPref.edit()){
             putString(Consts.PHONE_NUMBER, number)
         }.apply()
+    }
+
+    override fun setUpAppBar() {
+        "SetUpAppBarFromRegisterNumberFragment".logging()
     }
 }

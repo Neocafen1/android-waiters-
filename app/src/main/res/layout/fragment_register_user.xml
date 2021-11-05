@@ -33,7 +33,7 @@
 
         <TextView
             android:id="@+id/textView3"
-            style="@style/TextView_Roboto_Bold_14sp"
+            style="@style/TextView_Roboto_Thin_14sp"
             android:layout_marginTop="@dimen/margin_20_dp"
             android:text="@string/name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/textView5"
-            style="@style/TextView_Roboto_Bold_14sp"
+            style="@style/TextView_Roboto_Thin_14sp"
             android:layout_marginTop="@dimen/margin_25_dp"
             android:text="@string/Surname"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@
 
         <TextView
             android:id="@+id/textView2"
-            style="@style/TextView_Roboto_Bold_14sp"
+            style="@style/TextView_Roboto_Thin_14sp"
             android:text="@string/birthday"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardView2"

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chairs_nav_graph"
+    app:startDestination="@id/chairsFragment">
+
+    <fragment
+        android:id="@+id/chairsFragment"
+        android:name="com.example.neocafewaiterapplication.bottom_navigation.order.tables.TabelFragment"
+        android:label="fragment_chairs"
+        tools:layout="@layout/fragment_tabel" />
+</navigation>

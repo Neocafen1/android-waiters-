@@ -1,4 +1,4 @@
-package com.example.neocafewaiterapplication.bottom_navigation.menu.notification
+package com.example.neocafewaiterapplication.notification
 
 import androidx.lifecycle.ViewModel
 import com.example.neocafewaiterapplication.tools.sealed_classes.AllModels

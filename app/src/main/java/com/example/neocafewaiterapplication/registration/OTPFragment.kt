@@ -3,67 +3,146 @@ package com.example.neocafewaiterapplication.registration
 import `in`.aabhasjindal.otptextview.OTPListener
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentOTPBinding
 import com.example.neocafewaiterapplication.tools.BaseFragment
+import com.example.neocafewaiterapplication.tools.showToast
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import java.util.concurrent.TimeUnit
 
-class OTPFragment : BaseFragment<FragmentOTPBinding>() {
+class OTPFragment : Fragment() {
 
-    private val args:OTPFragmentArgs by navArgs()
+    private var binding: FragmentOTPBinding? = null
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup?): FragmentOTPBinding {
-        return FragmentOTPBinding.inflate(inflater)
+    private val args: OTPFragmentArgs by navArgs()
+    private val uid by lazy { FirebaseAuth.getInstance().uid }
+    private lateinit var firebaseCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    private lateinit var phoneNumber: String
+    private var id: String = ""
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentOTPBinding.inflate(inflater, container, false)
+
+        binding?.alertMessage?.text = "Код отправлен на номер ${args.phoneNumber}"
+        binding?.backIcon?.setOnClickListener { findNavController().navigateUp() }
+        phoneNumber = args.phoneNumber
+        binding?.repeat?.setOnClickListener { signInWithCredential() }
+        startTimer()
+        with(binding!!) {
+            alertMessage.text =
+                "Введите код который дал администратор по номеру ${args.phoneNumber}"
+            confirm.setOnClickListener { findNavController().navigate(OTPFragmentDirections.actionOTPFragmentToRegisterUserFragment()) }
+        }
+        firebaseCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
+                signIn(p0)
+            }
+
+            override fun onVerificationFailed(p0: FirebaseException) {
+                p0.message!!.showToast(requireContext(), Toast.LENGTH_LONG)
+            }
+
+            override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
+                id = p0
+                "Сообщение отправлено. Ждите".showToast(requireContext(), Toast.LENGTH_LONG)
+            }
+        }
+        sendMessage()
+        otpListener()
+
+        return binding?.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun sendMessage() { // Send Message to Firebase
+        PhoneAuthOptions.newBuilder()
+            .setActivity(requireActivity())
+            .setPhoneNumber("+996$phoneNumber")
+            .setTimeout(30L, TimeUnit.SECONDS)
+            .setCallbacks(firebaseCallback)
+            .build()
+            .apply {
+                PhoneAuthProvider.verifyPhoneNumber(this)
+            }
+    }
 
-        setUpUi()
+    private fun signIn(phone: PhoneAuthCredential) { // Заходит открывает следущее окно если номер в этом телефоне
+        FirebaseAuth.getInstance().signInWithCredential(phone).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                findNavController().navigate(OTPFragmentDirections.actionOTPFragmentToRegisterUserFragment())
+            }
+        }
 
-        binding.otp.otpListener = object : OTPListener{
+    }
+
+    private fun otpListener() {
+        binding?.otp?.otpListener = object : OTPListener {
             override fun onInteractionListener() {
-                binding.confirm.apply {
-                    isEnabled = false
-                    background = ContextCompat.getDrawable(requireContext(), R.drawable.button_disable_custom_item)
-                }
-                binding.typeCode.apply {
-                    text = resources.getText(R.string.input_code)
-                    setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                }
+                binding?.repeat?.background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_disable_custom_item
+                )
             }
 
             override fun onOTPComplete(otp: String) {
-                if (otp == "4545"){
-                    binding.confirm.apply {
-                        isEnabled = true
-                        background = ContextCompat.getDrawable(requireContext(), R.drawable.button_enable_custom_style)
-                    }
-
-                }else{
-                    binding.typeCode.apply{
-                        text = resources.getText(R.string.wrong_code)
-                        setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                    }
-
-                }
+                binding?.repeat?.background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_enable_custom_style
+                )
+                binding?.repeat?.isEnabled = true
             }
-
         }
-
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun setUpUi() {
-        with(binding){
-            alertMessage.text = "Введите код который дал администратор по номеру ${args.phoneNumber}"
-            backIcon.setOnClickListener { findNavController().navigateUp() }
-            confirm.setOnClickListener { findNavController().navigate(OTPFragmentDirections.actionOTPFragmentToRegisterUserFragment()) }
-        }
+    private fun signInWithCredential() {
+        val phoneAuthCredential = PhoneAuthProvider.getCredential(id, binding?.otp?.otp!!)
+        FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    findNavController().navigate(OTPFragmentDirections.actionOTPFragmentToRegisterUserFragment())
+                }
+            }
+    }
+
+    private fun startTimer() {
+        object : CountDownTimer(30000, 1000) {
+            @SuppressLint("SetTextI18n")
+            override fun onTick(millisUntilFinished: Long) {
+                binding?.repeat?.isEnabled = false
+                binding?.repeat?.text =
+                    "Отправить повторно ${millisUntilFinished / 1000}"
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onFinish() {
+                binding?.repeat?.text = "Отправить повторно"
+                binding?.repeat?.isEnabled = true
+                binding?.repeat?.background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_enable_custom_style
+                )
+            }
+        }.start()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

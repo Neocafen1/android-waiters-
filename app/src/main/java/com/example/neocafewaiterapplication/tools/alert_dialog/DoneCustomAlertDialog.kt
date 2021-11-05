@@ -11,7 +11,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.DoneItemBinding
 
-class DoneCustomAlertDialog : BaseAlertDialog<DoneItemBinding>() {
+class DoneCustomAlertDialog(private val title:String) : BaseAlertDialog<DoneItemBinding>() {
 
     private lateinit var avd:AnimatedVectorDrawableCompat
     private lateinit var avd2:AnimatedVectorDrawable
@@ -35,7 +35,7 @@ class DoneCustomAlertDialog : BaseAlertDialog<DoneItemBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val drawable = binding.done.drawable
-
+        binding.title.text = title
         if (drawable is AnimatedVectorDrawableCompat){
             avd = drawable as AnimatedVectorDrawableCompat
             avd.start()

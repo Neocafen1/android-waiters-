@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.neocafewaiterapplication.R
-import com.example.neocafewaiterapplication.databinding.MenuItemBinding
-import com.example.neocafewaiterapplication.databinding.NotificationItemBinding
-import com.example.neocafewaiterapplication.databinding.ProductItemBinding
+import com.example.neocafewaiterapplication.databinding.*
 import com.example.neocafewaiterapplication.tools.delegates.RecyclerItemClick
 import com.example.neocafewaiterapplication.tools.sealed_classes.AllModels
 import com.example.neocafewaiterapplication.tools.sealed_classes.AllViewHolders
@@ -17,6 +15,7 @@ class MainRecyclerViewAdapter(val click:RecyclerItemClick?) : RecyclerView.Adapt
 
     fun setList(list:MutableList<AllModels>){
         this.list = list
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllViewHolders {
@@ -27,6 +26,15 @@ class MainRecyclerViewAdapter(val click:RecyclerItemClick?) : RecyclerView.Adapt
 
             R.layout.notification_item -> {AllViewHolders.NotificationViewHolder(
                 NotificationItemBinding.inflate(inflater, parent, false))}
+
+            R.layout.product_info_item -> {AllViewHolders.ProductInfoViewHolder(
+                ProductInfoItemBinding.inflate(inflater, parent, false))}
+
+            R.layout.work_time_item -> {AllViewHolders.WorkTimeViewHolder(
+                WorkTimeItemBinding.inflate(inflater, parent, false)
+            )}
+
+            R.layout.table_item -> {AllViewHolders.TableViewHolder(TableItemBinding.inflate(inflater, parent, false))}
 
             else -> throw IllegalArgumentException("Invalid Type from adapter")
         }
@@ -39,8 +47,13 @@ class MainRecyclerViewAdapter(val click:RecyclerItemClick?) : RecyclerView.Adapt
                 holder.itemView.setOnClickListener { click?.clickListener(model) }
                 holder.bind(model as AllModels.Menu)
             }
-
-            is AllViewHolders.NotificationViewHolder -> {holder.bind(model as AllModels.Notification)}
+            is AllViewHolders.NotificationViewHolder -> holder.bind(model as AllModels.Notification)
+            is AllViewHolders.TableViewHolder -> {
+                holder.itemView.setOnClickListener { click?.clickListener(model) }
+                holder.bind(model as AllModels.Table)
+            }
+            is AllViewHolders.ProductInfoViewHolder -> holder.bind(model as AllModels.ProductOfReceipt)
+            is AllViewHolders.WorkTimeViewHolder -> holder.bind(model as AllModels.WorkTime)
         }
     }
 
@@ -53,6 +66,10 @@ class MainRecyclerViewAdapter(val click:RecyclerItemClick?) : RecyclerView.Adapt
             is AllModels.Menu -> R.layout.menu_item
             is AllModels.Product -> super.getItemViewType(position)
             is AllModels.Notification -> R.layout.notification_item
+            is AllModels.Table -> R.layout.table_item
+            is AllModels.Order -> super.getItemViewType(position)
+            is AllModels.ProductOfReceipt -> R.layout.product_info_item
+            is AllModels.WorkTime -> R.layout.work_time_item
         }
     }
 }

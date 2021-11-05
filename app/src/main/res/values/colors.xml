@@ -13,4 +13,12 @@
     <color name="icon_enable_color">#FF9C68</color>
     <color name="edit_text_color">#E9E9E9</color>
     <color name="card_view_background">#343545</color>
+    <color name="bottom_checked_color">#FF5151</color>
+    <color name="all_chip_color">#8876C5</color>
+    <color name="yellow">#FFF500</color>
+    <!--<color name="green">#4CC179</color>-->
+    <color name="canceled_color">#5B5B70</color>
+    <color name="afternoon_time_work">#FF9C68</color>
+    <color name="night_work_time">#7A68B7</color>
+
 </resources>

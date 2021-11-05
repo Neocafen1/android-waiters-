@@ -32,6 +32,14 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="TextView_Roboto_20sp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="TextView_Thin_18sp">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -53,6 +61,22 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextView_Roboto_26sp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextView_Roboto_30sp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -78,6 +102,22 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="Bottom_Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/bottom_checked_color</item>
+    </style>
+
+    <style name="Bottom_Text_Disable">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="TextView_Roboto_16sp">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -91,6 +131,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto_thin</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextView_Roboto_Thin_14sp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_thin</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -129,6 +177,14 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="Chip_Custom_Receipt" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="checkedIconTint">@color/white</item>
+        <item name="android:icon">@color/red</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="Toolbar_Default">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/margin_50_dp</item>
@@ -141,5 +197,13 @@
         <item name="android:layout_marginStart">@dimen/margin_16_dp</item>
         <item name="android:layout_marginTop">@dimen/margin_10_dp</item>
         <item name="android:layout_marginEnd">@dimen/margin_16_dp</item>
+    </style>
+
+    <style name="work_time_card_view">
+        <item name="android:layout_width">@dimen/margin_20_dp</item>
+        <item name="android:layout_height">@dimen/margin_20_dp</item>
+        <item name="android:layout_marginStart">@dimen/margin_16_dp</item>
+        <item name="android:backgroundTint">@color/afternoon_time_work</item>
+        <item name="android:layout_marginTop">@dimen/margin_30_dp</item>
     </style>
 </resources>
