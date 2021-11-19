@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
     android:orientation="vertical"
-    tools:context=".bottom_navigation.order.OrderFragment">
+    tools:context=".view.bottom_navigation.order.OrderFragment">
 
    <com.google.android.material.appbar.AppBarLayout
        android:id="@+id/order_app_bar"

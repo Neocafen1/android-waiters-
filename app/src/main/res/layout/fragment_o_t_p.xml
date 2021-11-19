@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".registration.OTPFragment">
+    tools:context=".view.registration.OTPFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout style="@style/Constraint_Layout_Default">
 
@@ -101,6 +101,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/margin_30_dp"
+            android:indeterminateTint="@color/main_enable_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repeat" />
+
 
 
 

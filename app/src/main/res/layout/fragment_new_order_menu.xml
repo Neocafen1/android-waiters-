@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/main_background_color"
-    tools:context=".bottom_navigation.new_order.new_order_menu.NewOrderMenu">
+    tools:context=".view.bottom_navigation.new_order.new_order_menu.NewOrderMenu">
 
     <include
         android:id="@+id/app_bar"
@@ -20,6 +20,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
+        android:clipToPadding="false"
+        android:padding="@dimen/item_offset"
         android:layoutAnimation="@anim/layout_animation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

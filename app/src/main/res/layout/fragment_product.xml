@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
-    tools:context=".bottom_navigation.order.product.ProductFragment">
+    tools:context=".view.bottom_navigation.order.product.ProductFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -46,6 +46,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/client_name" />
+        
+        <TextView
+            android:id="@+id/textView"
+            style="@style/TextView_Roboto_20sp"
+            android:text="@string/result"
+            app:layout_constraintTop_toBottomOf="@id/recycler"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/margin_20_dp"
+            android:layout_marginTop="@dimen/margin_30_dp"
+            android:paddingBottom="@dimen/margin_30_dp"/>
+
+        <TextView
+            android:id="@+id/total_price"
+            style="@style/TextView_Roboto_Bold_24sp"
+            app:layout_constraintTop_toBottomOf="@id/recycler"
+            android:layout_marginTop="@dimen/margin_30_dp"
+            android:layout_marginStart="@dimen/margin_10_dp"
+            app:layout_constraintStart_toEndOf="@id/textView"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

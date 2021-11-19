@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".user.UserFragment">
+    tools:context=".view.user.UserFragment">
 
     <Toolbar
         android:layout_width="match_parent"
@@ -53,6 +53,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="#10" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="@dimen/margin_70_dp"
+                android:layout_height="@dimen/margin_70_dp"
+                android:layout_marginTop="@dimen/margin_10_dp"
+                android:indeterminateTint="@color/main_enable_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
                 android:id="@+id/textView6"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/main_background_color"
     android:layout_height="match_parent"
-    tools:context=".notification.NotificationFragment">
+    tools:context=".view.notification.NotificationFragment">
 
     <Toolbar
         android:id="@+id/toolbar"

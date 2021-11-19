@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/chairsFragment"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.order.tables.TabelFragment"
+        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.order.tables.TabelFragment"
         android:label="fragment_chairs"
         tools:layout="@layout/fragment_tabel" />
 </navigation>

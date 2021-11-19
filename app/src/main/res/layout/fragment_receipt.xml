@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".bottom_navigation.order.receipt.ReceiptFragment">
+    tools:context=".view.bottom_navigation.order.receipt.ReceiptFragment">
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -65,15 +65,19 @@
 
 
 
-
         </com.google.android.material.chip.ChipGroup>
 
     </HorizontalScrollView>
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/main_enable_color"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
-        android:layoutAnimation="@anim/right_layout_animation"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/margin_10_dp"
         android:layout_height="match_parent"/>

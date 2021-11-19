@@ -35,6 +35,7 @@
     <string name="in_process">В процессе</string>
     <string name="ready">Готово</string>
     <string name="canceled">Отменено</string>
+    <string name="finished">Завершено</string>
     <string name="new_order">Новый заказ</string>
     <string name="result">Итого</string>
     <string name="work_time">График работы</string>

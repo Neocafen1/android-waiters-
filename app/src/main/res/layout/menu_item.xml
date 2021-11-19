@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/width_130_dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginStart="@dimen/margin_40_dp"
-    android:layout_marginTop="@dimen/margin_10_dp"
-    android:background="@drawable/menu_background"
-    android:layout_height="@dimen/width_130_dp">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/margin_16_dp"
+    app:cardElevation="@null"
+    android:layout_marginStart="@dimen/margin_10_dp"
+    android:backgroundTint="@color/card_view_background"
+    android:layout_width="wrap_content">
 
-    <ImageView
-        android:id="@+id/menu_icon"
-        android:layout_width="@dimen/margin_40_dp"
-        android:layout_height="@dimen/margin_60_dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/margin_20_dp"
-        tools:src="@drawable/ic_coffee" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/width_130_dp"
+        android:layout_height="@dimen/width_130_dp">
 
-    <TextView
-        android:id="@+id/menu_text"
-        app:layout_constraintTop_toBottomOf="@id/menu_icon"
-        android:layout_marginTop="@dimen/margin_5_dp"
-        style="@style/TextView_Roboto_Bold_16sp"
-        tools:text="@string/menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="10dp" />
+        <ImageView
+            android:id="@+id/menu_icon"
+            android:layout_width="@dimen/margin_40_dp"
+            android:layout_height="@dimen/margin_60_dp"
+            android:layout_marginTop="@dimen/margin_20_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_coffee" />
+
+        <TextView
+            android:id="@+id/menu_text"
+            style="@style/TextView_Roboto_Bold_16sp"
+            android:layout_marginTop="@dimen/margin_5_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menu_icon"
+            tools:layout_editor_absoluteY="10dp"
+            tools:text="@string/menu" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.neocafewaiterapplication.splash.SplashFragment"
+        android:name="com.example.neocafewaiterapplication.view.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerNumberFragment"
-        android:name="com.example.neocafewaiterapplication.registration.RegisterNumberFragment"
+        android:name="com.example.neocafewaiterapplication.view.registration.RegisterNumberFragment"
         android:label="fragment_register_number"
         tools:layout="@layout/fragment_register_number" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/OTPFragment"
-        android:name="com.example.neocafewaiterapplication.registration.OTPFragment"
+        android:name="com.example.neocafewaiterapplication.view.registration.OTPFragment"
         android:label="fragment_o_t_p"
         tools:layout="@layout/fragment_o_t_p" >
         <action
@@ -56,11 +56,11 @@
             app:popExitAnim="@anim/left_in" />
         <argument
             android:name="phone_number"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/registerUserFragment"
-        android:name="com.example.neocafewaiterapplication.registration.RegisterUserFragment"
+        android:name="com.example.neocafewaiterapplication.view.registration.RegisterUserFragment"
         android:label="fragment_register_user"
         tools:layout="@layout/fragment_register_user" >
         <action
@@ -72,10 +72,13 @@
             app:popExitAnim="@anim/left_in"
             app:popUpTo="@id/root_nav_graph"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="number"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/bottomNavigationFragment"
-        android:name="com.example.neocafewaiterapplication.root.BottomNavigationFragment"
+        android:name="com.example.neocafewaiterapplication.view.root.BottomNavigationFragment"
         android:label="fragment_bottom_navigation"
         tools:layout="@layout/fragment_bottom_navigation" />
 </navigation>

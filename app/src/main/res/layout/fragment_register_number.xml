@@ -7,7 +7,7 @@
     android:fillViewport="true"
     android:layout_alignParentBottom="true"
     android:orientation="vertical"
-    tools:context=".registration.RegisterNumberFragment">
+    tools:context=".view.registration.RegisterNumberFragment">
     
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Constraint_Layout_Default">

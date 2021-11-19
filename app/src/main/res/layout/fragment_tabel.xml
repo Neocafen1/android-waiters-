@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
-    tools:context=".bottom_navigation.order.tables.TabelFragment">
+    tools:context=".view.bottom_navigation.order.tables.TabelFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Constraint_Layout_Default">

@@ -12,6 +12,7 @@
     <color name="main_disable_color">#797685</color>
     <color name="icon_enable_color">#FF9C68</color>
     <color name="edit_text_color">#E9E9E9</color>
+    <color name="finished_chip_color">#C0C0C0</color>
     <color name="card_view_background">#343545</color>
     <color name="bottom_checked_color">#FF5151</color>
     <color name="all_chip_color">#8876C5</color>

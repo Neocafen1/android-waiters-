@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".registration.RegisterUserFragment">
+    tools:context=".view.registration.RegisterUserFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Constraint_Layout_Default">

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.menu.MenuFragment"
+        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -26,12 +26,9 @@
     </fragment>
     <fragment
         android:id="@+id/allProductFragment"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.menu.all_product.AllProductFragment"
+        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.menu.all_product.AllProductFragment"
         android:label="fragment_all_product"
         tools:layout="@layout/fragment_all_product" >
-        <argument
-            android:name="category"
-            app:argType="string" />
         <action
             android:id="@+id/action_allProductFragment_to_notificationFragment"
             app:destination="@id/notificationFragment"
@@ -42,15 +39,18 @@
         <action
             android:id="@+id/action_allProductFragment_to_userFragment3"
             app:destination="@id/userFragment3" />
+        <argument
+            android:name="category"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.example.neocafewaiterapplication.notification.NotificationFragment"
+        android:name="com.example.neocafewaiterapplication.view.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/userFragment3"
-        android:name="com.example.neocafewaiterapplication.user.UserFragment"
+        android:name="com.example.neocafewaiterapplication.view.user.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
 </navigation>

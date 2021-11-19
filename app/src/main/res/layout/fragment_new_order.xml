@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
     android:orientation="vertical"
-    tools:context=".bottom_navigation.new_order.NewOrderFragment">
+    tools:context=".view.bottom_navigation.new_order.NewOrderFragment">
 
     <include
         android:id="@+id/include"

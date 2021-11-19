@@ -6,7 +6,7 @@
     android:background="@color/main_background_color"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".bottom_navigation.new_order.new_order_products.NewOrderProducts">
+    tools:context=".view.bottom_navigation.new_order.new_order_products.NewOrderProducts">
 
     <include
         android:id="@+id/app_bar"
@@ -107,7 +107,7 @@
             android:id="@+id/receipt_number"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/margin_20_dp"
-            tools:text="Заказ #1"/>
+            android:text="@string/result"/>
 
         <TextView
             style="@style/TextView_Roboto_26sp"

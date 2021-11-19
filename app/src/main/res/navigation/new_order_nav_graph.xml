@@ -6,7 +6,7 @@
     app:startDestination="@id/newOrderFragment">
     <fragment
         android:id="@+id/newOrderFragment"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.NewOrderFragment"
+        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.new_order.NewOrderFragment"
         android:label="fragment_new_order"
         tools:layout="@layout/fragment_new_order" >
         <action
@@ -36,12 +36,9 @@
     </fragment>
     <fragment
         android:id="@+id/newOrderMenu"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.new_order_menu.NewOrderMenu"
+        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.new_order.new_order_menu.NewOrderMenu"
         android:label="fragment_new_order_menu"
         tools:layout="@layout/fragment_new_order_menu" >
-        <argument
-            android:name="table_number"
-            app:argType="integer" />
         <action
             android:id="@+id/action_newOrderMenu_to_notificationFragment3"
             app:destination="@id/notificationFragment3"
@@ -63,15 +60,18 @@
             app:exitAnim="@anim/down_in"
             app:popEnterAnim="@anim/up_in"
             app:popExitAnim="@anim/down_in" />
+        <argument
+            android:name="table_number"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment3"
-        android:name="com.example.neocafewaiterapplication.notification.NotificationFragment"
+        android:name="com.example.neocafewaiterapplication.view.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/newOrderProducts"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.new_order_products.NewOrderProducts"
+        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.new_order.new_order_products.NewOrderProducts"
         android:label="fragment_new_order_products"
         tools:layout="@layout/fragment_new_order_products" >
         <action
@@ -81,12 +81,6 @@
             app:exitAnim="@anim/down_in"
             app:popEnterAnim="@anim/up_in"
             app:popExitAnim="@anim/down_in" />
-        <argument
-            android:name="category"
-            app:argType="string" />
-        <argument
-            android:name="table_number"
-            app:argType="integer" />
         <action
             android:id="@+id/action_newOrderProducts_to_finalReceiptFragment"
             app:destination="@id/finalReceiptFragment"
@@ -101,10 +95,16 @@
             app:exitAnim="@anim/down_in"
             app:popEnterAnim="@anim/up_in"
             app:popExitAnim="@anim/down_in" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <argument
+            android:name="table_number"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/finalReceiptFragment"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.final_receipt.FinalReceiptFragment"
+        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.new_order.final_receipt.FinalReceiptFragment"
         android:label="fragment_final_receipt"
         tools:layout="@layout/fragment_final_receipt" >
         <action
@@ -120,12 +120,12 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment2"
-        android:name="com.example.neocafewaiterapplication.user.UserFragment"
+        android:name="com.example.neocafewaiterapplication.view.user.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.neocafewaiterapplication.bottom_navigation.new_order.search.SearchFragment"
+        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.new_order.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <argument

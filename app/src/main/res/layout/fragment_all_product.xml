@@ -7,7 +7,7 @@
     android:background="@color/main_background_color"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".bottom_navigation.menu.all_product.AllProductFragment">
+    tools:context=".view.bottom_navigation.menu.all_product.AllProductFragment">
 
     <include
         android:id="@+id/include"
