@@ -30,9 +30,6 @@
             app:exitAnim="@anim/down_in"
             app:popEnterAnim="@anim/up_in"
             app:popExitAnim="@anim/down_in" />
-        <argument
-            android:name="fromFinal"
-            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/newOrderMenu"
@@ -53,13 +50,6 @@
             app:exitAnim="@anim/left_in"
             app:popEnterAnim="@anim/right_in"
             app:popExitAnim="@anim/left_in" />
-        <action
-            android:id="@+id/action_newOrderMenu_to_searchFragment"
-            app:destination="@id/searchFragment"
-            app:enterAnim="@anim/up_in"
-            app:exitAnim="@anim/down_in"
-            app:popEnterAnim="@anim/up_in"
-            app:popExitAnim="@anim/down_in" />
         <argument
             android:name="table_number"
             app:argType="integer" />
@@ -88,13 +78,6 @@
             app:exitAnim="@anim/left_in"
             app:popEnterAnim="@anim/right_in"
             app:popExitAnim="@anim/left_in" />
-        <action
-            android:id="@+id/action_newOrderProducts_to_searchFragment"
-            app:destination="@id/searchFragment"
-            app:enterAnim="@anim/up_in"
-            app:exitAnim="@anim/down_in"
-            app:popEnterAnim="@anim/up_in"
-            app:popExitAnim="@anim/down_in" />
         <argument
             android:name="category"
             app:argType="string" />
@@ -115,19 +98,23 @@
             app:popEnterAnim="@anim/up_in"
             app:popExitAnim="@anim/down_in" />
         <action
-            android:id="@+id/action_finalReceiptFragment_to_newOrderFragment"
-            app:destination="@id/newOrderFragment" />
+            android:id="@+id/action_finalReceiptFragment_to_newOrderFragment2"
+            app:destination="@id/newOrderFragment"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in"
+            app:popUpTo="@id/new_order_nav_graph"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="tableId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/userFragment2"
         android:name="com.example.neocafewaiterapplication.view.user.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.neocafewaiterapplication.view.bottom_navigation.new_order.search.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
     <argument
         android:name="fromFinal"
         android:defaultValue="false" />

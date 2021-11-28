@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 class ReceiptViewModel(private val repository: Repository) : ViewModel() {
 
     val orders = MutableLiveData<AllModels.NeoOrder>()
+    val isOrderClosed = MutableLiveData<Boolean>()
 
     fun getOrders(status:String){
         viewModelScope.launch {
@@ -26,6 +27,14 @@ class ReceiptViewModel(private val repository: Repository) : ViewModel() {
                         orders.postValue(it.value)
                     }
                 }
+            }
+        }
+    }
+
+    fun closeOrder(id:Int){
+        viewModelScope.launch {
+            repository.closeOrder(id).let {
+                if(it is Resource.Success) isOrderClosed.postValue(it.value)
             }
         }
     }

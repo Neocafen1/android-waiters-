@@ -25,9 +25,9 @@ sealed class AllViewHolders(binding: ViewBinding) : RecyclerView.ViewHolder(bind
 
         fun bind(item: AllModels.Notification) {
             val color = when (item.status) {
-                "Заказ готов" -> Consts.GREEN
-                "Бариста принял заказ" -> Consts.GREEN
-                else -> Consts.WHITE
+                "Заказ готов" -> R.color.main_enable_color
+                "Бариста принял заказ" -> R.color.main_enable_color
+                else -> R.color.white
             }
 
             with(binding) {
@@ -45,7 +45,7 @@ sealed class AllViewHolders(binding: ViewBinding) : RecyclerView.ViewHolder(bind
         fun bind(item: AllModels.Table) {
             binding.tableNumber.text = "Стол №${item.id}"
 
-            if (item.status) setData(Consts.FREE_COLOR, "Свободен")
+            if (item.user == null) setData(Consts.FREE_COLOR, "Свободен")
             else setData(Consts.RED, "Занят")
         }
 
@@ -61,39 +61,12 @@ sealed class AllViewHolders(binding: ViewBinding) : RecyclerView.ViewHolder(bind
         @SuppressLint("SetTextI18n")
         fun bind(item:AllModels.ProductOfReceipt){
             with(binding){
-                productName.text = item.name
+                productName.text = item.productTitle
                 price.text = "${item.price}c за шт"
-                totalPrice.text = "${item.price * item.county}"
-                status.text = item.status
-                county.text = item.county.toString()
-
-                when(item.status){
-                    "Готово" -> statusColor.changeColor(Consts.READY_COLOR)
-                    "В процессе" -> statusColor.changeColor(Consts.IN_PROCESS_COLOR)
-                    "Новый" -> statusColor.changeColor(Consts.NEW_COLOR)
-                }
+                totalPrice.text = "${item.sum}c"
+                county.text = "x${item.quantity}"
             }
         }
     }
-
-    class WorkTimeViewHolder(val binding: WorkTimeItemBinding) : AllViewHolders(binding){
-
-        fun bind(item:AllModels.WorkTime){
-            with(binding){
-                day.text = item.day
-                morningTime.text = item.startTime
-                eveningTime.text = item.endTime
-
-                val color = when(item.work){
-                    "Morning" -> R.color.afternoon_time_work
-                    "Evening" -> R.color.night_work_time
-                    else -> R.color.main_enable_color
-                }
-
-                day.setTextColor(ContextCompat.getColor(day.context, color))
-            }
-        }
-    }
-
 
 }

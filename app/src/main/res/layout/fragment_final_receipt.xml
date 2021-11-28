@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,10 +8,14 @@
     android:orientation="vertical"
     tools:context=".view.bottom_navigation.new_order.final_receipt.FinalReceiptFragment">
 
+
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_50_dp"
-        android:background="@color/main_background_color">
+        android:background="@color/main_background_color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
@@ -39,21 +44,41 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
+        android:id="@+id/table"
         style="@style/TextView_Roboto_18sp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="@dimen/margin_10_dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:text="Стол №2" />
+
+
+    <TextView
+        android:id="@+id/timer"
+        style="@style/TextView_Roboto_18sp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
-        android:layoutAnimation="@anim/right_layout_animation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_5_dp"
+        android:layout_marginBottom="@dimen/margin_5_dp"
+        android:layoutAnimation="@anim/right_layout_animation"
+        app:layout_constraintBottom_toTopOf="@+id/totalPrice"
+        app:layout_constraintTop_toBottomOf="@id/table" />
 
     <TextView
         android:id="@+id/totalPrice"
         style="@style/TextView_Roboto_20sp"
+        app:layout_constraintBottom_toTopOf="@id/take_order"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/margin_20_dp"
+        android:layout_marginBottom="@dimen/margin_20_dp"
         tools:text="Итого. 980 сом" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -61,12 +86,15 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_50_dp"
         android:layout_marginStart="@dimen/margin_16_dp"
-        android:layout_marginTop="@dimen/margin_20_dp"
         android:layout_marginEnd="@dimen/margin_16_dp"
+        android:layout_marginBottom="@dimen/margin_10_dp"
+        android:background="@drawable/rounded_alert_dialog"
+        android:backgroundTint="@color/main_enable_color"
         android:text="@string/take_order"
         android:textColor="@color/white"
-        android:background="@drawable/rounded_alert_dialog"
-        android:backgroundTint="@color/main_enable_color" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

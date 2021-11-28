@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/name"
-        style="@style/TextView_Roboto_26sp"
+        style="@style/TextView_Roboto_24sp"
         android:layout_marginStart="@dimen/margin_10_dp"
         android:layout_marginTop="@dimen/margin_60_dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:id="@+id/price"
         style="@style/TextView_Roboto_16sp"
         android:layout_marginStart="@dimen/margin_10_dp"
-        android:layout_marginTop="@dimen/margin_70_dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintStart_toEndOf="@+id/name"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="240c" />

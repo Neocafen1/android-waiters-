@@ -36,7 +36,7 @@ class NewOrderProducts : BaseFragment<FragmentNewOrderProductsBinding>(), Recycl
         updateVisibility(viewModel.getProductsTotalPrice())
         with(binding) {
             tableNumber.text = "Стол №${args.tableNumber}"
-            takeOrder.setOnClickListener { navController.navigate(NewOrderProductsDirections.actionNewOrderProductsToFinalReceiptFragment()) }
+            takeOrder.setOnClickListener { navController.navigate(NewOrderProductsDirections.actionNewOrderProductsToFinalReceiptFragment(args.tableNumber)) }
 
             val viewId = mapOfCategory[args.category] // Через safe args узнаем какую категорию он выбрал
             if (viewId != null) {
@@ -61,7 +61,6 @@ class NewOrderProducts : BaseFragment<FragmentNewOrderProductsBinding>(), Recycl
         with(binding.appBar) {
             back.setOnClickListener { navController.navigateUp() }
             notification.setOnClickListener { navController.navigate(NewOrderProductsDirections.actionNewOrderProductsToNotificationFragment3()) }
-            search.setOnClickListener { navController.navigate(NewOrderProductsDirections.actionNewOrderProductsToSearchFragment()) }
         }
     }
 
@@ -82,20 +81,22 @@ class NewOrderProducts : BaseFragment<FragmentNewOrderProductsBinding>(), Recycl
     }
 
     override fun clickListener(model: AllModels) {
+        model as AllModels.Product
         ProductAlertDialog(model).show(childFragmentManager, "TAG")
     }
 
-    fun update(method: String, name: String) { // если он меняет кол во продуктов то это
+    fun update(method: String, name: Int) { // если он меняет кол во продуктов то это
         recyclerAdapter.notifyDataSetChanged()
         plusUpdateTotalPrice(method, name)
     }
 
     @SuppressLint("SetTextI18n")
-    private fun plusUpdateTotalPrice(method: String, name: String) { // update TotalPrice
+    private fun plusUpdateTotalPrice(method: String, name: Int) { // update TotalPrice
         viewModel.productLiveData.observe(viewLifecycleOwner) {
             viewModel.totalPriceAfterQuanityChange(it, method, name)
         }
-        updateVisibility(viewModel.totalPrice)
+        updateVisibility(viewModel.getProductsTotalPrice())
+
     }
 
     @SuppressLint("SetTextI18n")

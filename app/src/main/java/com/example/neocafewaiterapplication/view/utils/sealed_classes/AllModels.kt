@@ -9,25 +9,36 @@ sealed class AllModels : Serializable {
         val orders: MutableList<Order>
     )
 
-
-    data class Order(
+    data class  Order(
         val bonus: Int,
-        val creationDate: String,
+        val total_sum: Int,
+        val date: String,
+        val time: String,
         val id: Int,
-        val orderItems: List<OrderItem>,
+        val orderItems: List<ProductOfReceipt>,
         val status: String,
         val tableId: Int,
         val userId: Int,
         val username: String
     ):AllModels()
 
+    data class FinishProduct(val order: FinishOrder,
+                             val orderItems: MutableList<OrderItem>)
+
+    data class FinishOrder(val tableId:Int)
+
     data class OrderItem(
+        val productId: Int,
+        val quantity: Int
+    )
+
+    data class ProductOfReceipt(
         val productId: Int,
         val productTitle: String,
         val price:Int,
         val quantity: Int,
         val sum:Int
-    )
+    ):AllModels()
 
     data class RefreshResponse(@SerializedName("access")
                                val access: String
@@ -48,11 +59,9 @@ sealed class AllModels : Serializable {
 
     data class Notification (val status:String, val products:String, val time:String): AllModels()
 
-    data class Table (val id:Int, val qrCode:String, val status:Boolean):AllModels()
+    data class Table (val id:Int, val qrCode:String, val user:String?):AllModels()
 
     data class UserInfo(val number:Int, val first_name:String, val last_name:String, val birthDate:String?, val password:String)
 
-    data class WorkTime (val day:String, val startTime:String, val endTime:String, val work:String):AllModels()
-
-    data class ProductOfReceipt(val status: String, val name: String, val price:Int, val county:Int):AllModels()
+    data class WorkTime (val day:String, val work_time:String)
 }

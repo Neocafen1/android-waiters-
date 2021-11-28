@@ -10,11 +10,13 @@
     <dimen name="margin_20_dp">20dp</dimen>
     <dimen name="margin_30_dp">30dp</dimen>
     <dimen name="margin_250_dp">250dp</dimen>
-    <dimen name="alert_dialog_width">250dp</dimen>
-    <dimen name="alert_dialog_height">170dp</dimen>
+    <dimen name="alert_dialog_width">300dp</dimen>
+    <dimen name="alert_dialog_height">180dp</dimen>
     <dimen name="product_alert_dialog_height">250dp</dimen>
     <dimen name="product_alert_dialog_width">350dp</dimen>
-    <dimen name="done_alert_dialog_height">150dp</dimen>
+    <dimen name="done_alert_dialog_height">160dp</dimen>
+    <dimen name="done_final_product_dialog_height">250dp</dimen>
+    <dimen name="done_final_product_dialog_width">350dp</dimen>
     <dimen name="margin_40_dp">40dp</dimen>
     <dimen name="width_130_dp">130dp</dimen>
     <dimen name="margin_60_dp">60dp</dimen>

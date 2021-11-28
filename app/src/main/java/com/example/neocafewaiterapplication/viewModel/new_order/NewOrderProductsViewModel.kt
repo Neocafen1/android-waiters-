@@ -18,6 +18,7 @@ class NewOrderProductsViewModel(private val repository: Repository) : ViewModel(
     var sortedList = mutableListOf<AllModels.Product>()
     val finishList = mutableListOf<AllModels.Product>() // list для итогового чека
     val productLiveData = MutableLiveData<MutableList<AllModels.Product>>()
+    val isProductListSent = MutableLiveData<Boolean>()
 
     init {getAllProduct()}
 
@@ -29,6 +30,10 @@ class NewOrderProductsViewModel(private val repository: Repository) : ViewModel(
                }
            }
         }
+    }
+
+    fun updateProductList(){
+        getAllProduct()
     }
 
     fun getProductsTotalPrice():Int{ // В начале получаем итоговую цену
@@ -54,13 +59,27 @@ class NewOrderProductsViewModel(private val repository: Repository) : ViewModel(
         return finishList
     }
 
-    fun totalPriceAfterQuanityChange(list:MutableList<AllModels.Product>, method: String, name:String){ // Итоговая цена
-       list.forEach{i ->
-            if (i.title == name && method == "+"){
+    fun totalPriceAfterQuanityChange(list:MutableList<AllModels.Product>, method: String, id:Int){ // Итоговая цена
+        list.forEach{i ->
+            if (i.id == id && method == "+"){
                 totalPrice += i.price
             }
-            else if (i.title == name && method == "-"){
-                totalPrice -= i.price
+            else if (i.id == id && method == "-"){
+                totalPrice += i.price
+            }
+        }
+    }
+
+    fun sendProductList(tableId: Int) {
+        val list = mutableListOf<AllModels.OrderItem>()
+        val order = AllModels.FinishOrder(tableId)
+        finishList.map {
+            list.add(AllModels.OrderItem(it.id, it.county))
+        }
+
+        viewModelScope.launch {
+            repository.createOrder(AllModels.FinishProduct(order, list)).let {
+                if (it is Resource.Success) this@NewOrderProductsViewModel.isProductListSent.postValue(it.value)
             }
         }
     }

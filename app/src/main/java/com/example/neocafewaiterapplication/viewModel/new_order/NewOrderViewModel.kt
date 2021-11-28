@@ -11,11 +11,7 @@ import kotlinx.coroutines.launch
 class NewOrderViewModel(private val repository: Repository) : ViewModel(){
     val tableList = MutableLiveData<MutableList<AllModels.Table>>()
 
-    init {
-        getTableList()
-    }
-
-    private fun getTableList() {
+    fun getTableList() {
         viewModelScope.launch {
             repository.getAllTables().let {
                 if (it is Resource.Success) tableList.postValue(it.value)

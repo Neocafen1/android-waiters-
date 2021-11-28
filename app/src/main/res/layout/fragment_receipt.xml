@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,10 +8,13 @@
     tools:context=".view.bottom_navigation.order.receipt.ReceiptFragment">
 
     <HorizontalScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_10_dp"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
@@ -64,23 +67,30 @@
                 app:chipBackgroundColor="@color/canceled_chip_background" />
 
 
-
         </com.google.android.material.chip.ChipGroup>
 
     </HorizontalScrollView>
 
-    <ProgressBar
+    <com.bhargavms.dotloader.DotLoader
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:indeterminateTint="@color/main_enable_color"/>
+        android:layout_marginBottom="@dimen/margin_50_dp"
+        app:color_array="@array/dot_colors"
+        app:dot_radius="@dimen/margin_5_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:number_of_dots="3" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_10_dp"
-        android:layout_height="match_parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scroll_view" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

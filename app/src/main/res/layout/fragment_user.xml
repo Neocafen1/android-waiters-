@@ -45,34 +45,63 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout style="@style/Constraint_Layout_Default">
 
-            <TextView
-                android:id="@+id/rating"
-                style="@style/Title_Text_36sp_Roboto"
-                android:layout_marginTop="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="#10" />
-
-            <ProgressBar
-                android:id="@+id/progress"
-                android:layout_width="@dimen/margin_70_dp"
-                android:layout_height="@dimen/margin_70_dp"
-                android:layout_marginTop="@dimen/margin_10_dp"
-                android:indeterminateTint="@color/main_enable_color"
+            <ImageView
+                android:id="@+id/emoji"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/waiter_emoji"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bhargavms.dotloader.DotLoader
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dot_radius="5dp"
+                app:number_of_dots="3"
+                app:color_array="@array/dot_colors"
+                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/rating_card"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_60_dp"
+                android:layout_marginTop="95dp"
+                android:backgroundTint="#7A68B7"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/rating"
+                    style="@style/TextView_Roboto_Bold_18sp"
+                    android:layout_margin="@dimen/margin_5_dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.cardview.widget.CardView>
 
 
             <TextView
                 android:id="@+id/textView6"
                 style="@style/TextView_Roboto_Thin_14sp"
                 android:layout_marginStart="@dimen/margin_30_dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rating" />
+
+                app:layout_constraintTop_toBottomOf="@id/emoji" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
@@ -188,68 +217,46 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardView5" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView7"
-                style="@style/work_time_card_view"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="@dimen/margin_20_dp"
+            <com.bhargavms.dotloader.DotLoader
+                android:id="@+id/time_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10_dp"
+                android:layout_marginBottom="3dp"
+                android:layout_margin="@dimen/margin_20_dp"
+                app:dot_radius="5dp"
+                app:number_of_dots="3"
+                app:color_array="@array/dot_colors"
+                app:layout_constraintBottom_toTopOf="@+id/log_out"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/time_work" />
-
-            <TextView
-                android:id="@+id/textView9"
-                style="@style/TextView_Roboto_Thin_16sp"
-                android:layout_marginStart="@dimen/margin_10_dp"
-                android:layout_marginTop="@dimen/margin_30_dp"
-                android:text="@string/day_time"
-                app:layout_constraintStart_toEndOf="@+id/cardView7"
-                app:layout_constraintTop_toBottomOf="@id/time_work" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView8"
-                style="@style/work_time_card_view"
-                android:backgroundTint="@color/night_work_time"
-                app:cardCornerRadius="@dimen/margin_10_dp"
-                app:cardElevation="@dimen/margin_20_dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardView7" />
-
-            <TextView
-                style="@style/TextView_Roboto_Thin_16sp"
-                android:layout_marginStart="@dimen/margin_10_dp"
-                android:layout_marginTop="@dimen/margin_30_dp"
-                android:text="@string/night_work_time"
-                app:layout_constraintStart_toEndOf="@+id/cardView8"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView9"
-                style="@style/work_time_card_view"
-                android:backgroundTint="@color/main_enable_color"
-                app:cardCornerRadius="@dimen/margin_10_dp"
-                app:cardElevation="@dimen/margin_20_dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardView8" />
-
-            <TextView
-                android:id="@+id/textView10"
-                style="@style/TextView_Roboto_Thin_16sp"
-                android:layout_marginStart="@dimen/margin_10_dp"
-                android:layout_marginTop="@dimen/margin_30_dp"
-                android:text="@string/day_off"
-                app:layout_constraintStart_toEndOf="@+id/cardView9"
-                app:layout_constraintTop_toBottomOf="@+id/cardView8" />
+                app:layout_constraintTop_toBottomOf="@+id/time_work" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="@dimen/margin_20_dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_25_dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/log_out"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time_work" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/log_out"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_50_dp"
+                android:layout_marginStart="@dimen/margin_16_dp"
+                android:layout_marginTop="@dimen/margin_60_dp"
+                android:layout_marginEnd="@dimen/margin_16_dp"
+                android:background="@drawable/rounded_alert_dialog"
+                android:backgroundTint="@color/main_enable_color"
+                android:text="@string/exit"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                app:layout_constraintTop_toBottomOf="@+id/recycler" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

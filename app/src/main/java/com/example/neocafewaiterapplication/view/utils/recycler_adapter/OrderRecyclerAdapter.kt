@@ -42,7 +42,7 @@ class OrderRecyclerAdapter(val clickListener: RecyclerItemClick) :
             changeBackgroundColor(binding.statusCard, status, binding.statusText)
             binding.tableNumber.text = "Стол №$tableId"
             binding.orderNumber.text = "Заказ №$id"
-            binding.time.text = creationDate
+            binding.time.text = time
         }
     }
 

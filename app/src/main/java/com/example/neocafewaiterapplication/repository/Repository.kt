@@ -18,7 +18,7 @@ class Repository(
         return safeApiCall { menuAPi.getAllProduct() }
     }
 
-    suspend fun getSchedule():Resource<MutableList<AllModels>>{
+    suspend fun getSchedule():Resource<List<AllModels.WorkTime>>{
         return safeApiCall { staffApi.getSchedule() }
     }
 
@@ -52,6 +52,22 @@ class Repository(
 
     suspend fun getRating():Resource<Int>{
         return safeApiCall { staffApi.getRating() }
+    }
+
+    suspend fun changeNameAndSurname(name:String, surname:String):Resource<Boolean>{
+        return safeApiCall { staffApi.changeUserNameAndSurname(name,surname) }
+    }
+
+    suspend fun createOrder(order:AllModels.FinishProduct):Resource<Boolean>{
+        return safeApiCall { menuAPi.createOrder(order) }
+    }
+
+    suspend fun changeStatusToFree(table:String):Resource<Boolean>{
+        return safeApiCall { menuAPi.changeStatusToFree(table) }
+    }
+
+    suspend fun closeOrder(id:Int):Resource<Boolean>{
+        return safeApiCall { menuAPi.closeOrder(id) }
     }
 
 }

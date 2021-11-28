@@ -25,6 +25,8 @@
         <argument
             android:name="model"
             app:argType="com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels$Order" />
+        <argument android:name="status"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment4"

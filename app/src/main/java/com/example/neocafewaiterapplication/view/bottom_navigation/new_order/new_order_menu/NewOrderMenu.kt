@@ -54,7 +54,6 @@ class NewOrderMenu : BaseFragment<FragmentNewOrderMenuBinding>(),RecyclerItemCli
     override fun setUpAppBar() {
         with(binding.appBar) {
             back.setOnClickListener { navController.navigateUp() }
-            search.setOnClickListener { navController.navigate(NewOrderMenuDirections.actionNewOrderMenuToSearchFragment()) }
             notification.setOnClickListener { navController.navigate(NewOrderMenuDirections.actionNewOrderMenuToNotificationFragment3()) }
         }
     }

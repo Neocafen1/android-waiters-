@@ -49,7 +49,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(), KoinComponent {
     private fun getToken() {
         FirebaseMessaging.getInstance().token.addOnSuccessListener {
             binding.progress.visible()
-            viewModel.getToken(444333440, "0000")
+            viewModel.getToken(777555333, "0000")
         }
 
         viewModel.token.observe(viewLifecycleOwner) {

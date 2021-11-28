@@ -45,4 +45,5 @@
     <string name="day_off">Выходной</string>
     <string name="if_message_null">Если код не пришел, нажмите кнопку отправить повторно</string>
     <string name="send_again">Отправить повторно</string>
+    <string name="exit">Выйти</string>
 </resources>

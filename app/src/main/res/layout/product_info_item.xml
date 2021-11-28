@@ -12,6 +12,7 @@
 
     <TextView
         android:id="@+id/product_name"
+        android:layout_width="150dp"
         style="@style/TextView_Roboto_18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,10 +22,10 @@
 
     <TextView
         android:id="@+id/price"
-        style="@style/TextView_Roboto_Thin_16sp"
+        style="@style/TextView_Roboto_Thin_14sp"
         app:layout_constraintStart_toEndOf="@+id/product_name"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         android:layout_marginStart="@dimen/radius_8_dp"
         tools:text="(300 с за шт)" />
 
@@ -36,26 +37,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="600c" />
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/status_color"
-        android:layout_width="@dimen/margin_15_dp"
-        android:layout_height="@dimen/margin_15_dp"
-        android:layout_marginBottom="@dimen/margin_13_dp"
-        app:cardCornerRadius="@dimen/margin_10_dp"
-        android:layout_marginStart="@dimen/margin_16_dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <TextView
-        android:id="@+id/status"
-        style="@style/TextView_Roboto_Bold_18sp"
-        android:layout_marginStart="@dimen/radius_8_dp"
-        android:layout_marginBottom="@dimen/margin_10_dp"
-        app:layout_constraintStart_toEndOf="@id/status_color"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/county"

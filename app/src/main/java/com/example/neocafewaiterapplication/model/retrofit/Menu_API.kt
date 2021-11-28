@@ -1,8 +1,7 @@
 package com.example.neocafewaiterapplication.model.retrofit
 
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface Menu_API {
 
@@ -17,5 +16,15 @@ interface Menu_API {
 
     @GET("ncafe/orders/")
     suspend fun getAllOrders():AllModels.NeoOrder
+
+    @POST("ncafe/orders/")
+    suspend fun createOrder(@Body order:AllModels.FinishProduct):Boolean
+
+    @DELETE("ncafe/tables/{table}/")
+    suspend fun changeStatusToFree(@Path(value = "table",encoded = true) table:String):Boolean
+
+    @FormUrlEncoded
+    @POST("ncafe/orders/close/")
+    suspend fun closeOrder(@Field("order")id:Int):Boolean
 
 }

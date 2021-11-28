@@ -7,19 +7,26 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.neocafewaiterapplication.databinding.FragmentTabelBinding
 import com.example.neocafewaiterapplication.view.root.BaseFragment
+import com.example.neocafewaiterapplication.view.utils.alert_dialog.CustomAlertDialog
+import com.example.neocafewaiterapplication.view.utils.alert_dialog.DoneCustomAlertDialog
+import com.example.neocafewaiterapplication.view.utils.delegates.RecyclerItemClick
+import com.example.neocafewaiterapplication.view.utils.gone
 import com.example.neocafewaiterapplication.view.utils.logging
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.MainRecyclerViewAdapter
+import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
+import com.example.neocafewaiterapplication.view.utils.visible
 import com.example.neocafewaiterapplication.viewModel.orders_vm.TableViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class TabelFragment : BaseFragment<FragmentTabelBinding>() {
+class TabelFragment : BaseFragment<FragmentTabelBinding>(),RecyclerItemClick {
 
-    private val recyclerAdapter by lazy {MainRecyclerViewAdapter(null)}
+    private val recyclerAdapter by lazy {MainRecyclerViewAdapter(this)}
     private val viewModel by viewModel<TableViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
+        viewModel.getTableList()
     }
 
     private fun setUpRecycler() {
@@ -28,6 +35,8 @@ class TabelFragment : BaseFragment<FragmentTabelBinding>() {
             adapter = recyclerAdapter
         }
         viewModel.tableList.observe(viewLifecycleOwner){
+            binding.recycler.visible()
+            binding.progress.gone()
             recyclerAdapter.setList(it)
         }
     }
@@ -40,4 +49,18 @@ class TabelFragment : BaseFragment<FragmentTabelBinding>() {
         "SetUpAppBar in TabelFragment".logging()
     }
 
+    override fun clickListener(model: AllModels) {
+        model as AllModels.Table
+        if (model.user != null){
+            CustomAlertDialog("Хотите освободить стол", {changeTableStatus(model.qrCode)}).show(childFragmentManager, "TAG")
+        }
+    }
+
+    private fun changeTableStatus(table:String){
+        viewModel.changeStatusToFree(table)
+        viewModel.statusChanged.observe(viewLifecycleOwner){
+            viewModel.getTableList()
+            DoneCustomAlertDialog("Стол освобожден").show(childFragmentManager,"TAG")
+        }
+    }
 }

@@ -13,6 +13,7 @@
     <TextView
         android:id="@+id/product_name"
         style="@style/TextView_Roboto_18sp"
+        android:layout_width="150dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/margin_20_dp"
@@ -21,10 +22,10 @@
 
     <TextView
         android:id="@+id/price"
-        style="@style/TextView_Roboto_Thin_16sp"
+        style="@style/TextView_Roboto_Thin_14sp"
         app:layout_constraintStart_toEndOf="@+id/product_name"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/margin_20_dp"
+        android:layout_marginTop="22dp"
         android:layout_marginStart="@dimen/radius_8_dp"
         tools:text="(300 с за шт)" />
 

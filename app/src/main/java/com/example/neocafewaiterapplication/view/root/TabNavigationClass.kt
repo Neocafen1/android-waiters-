@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import com.example.neocafewaiterapplication.view.utils.alert_dialog.CustomAlertDialog
 
 abstract class TabNavigationClass(layout:Int): Fragment(layout){
 
@@ -25,7 +26,6 @@ abstract class TabNavigationClass(layout:Int): Fragment(layout){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i("TAG", "onViewCreated")
 
         currentNavController = findNavController()
 
@@ -38,7 +38,7 @@ abstract class TabNavigationClass(layout:Int): Fragment(layout){
                 if (isNavigatedUp) {
                     return
                 } else {
-                    activity?.finish()
+                    CustomAlertDialog("Вы точно хотите выйти из приложения?", {activity?.finish()}).show(childFragmentManager, "TAG")
                 }
             }
         })

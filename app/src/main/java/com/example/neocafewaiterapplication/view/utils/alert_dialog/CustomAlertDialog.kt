@@ -29,6 +29,7 @@ class CustomAlertDialog(val title:String, val function:() -> Unit) : BaseAlertDi
         binding.negative.setOnClickListener {
             dismiss()
         }
+        binding.close.setOnClickListener { dismiss() }
 
         binding.positive.setOnClickListener {
             dismiss()

@@ -37,11 +37,6 @@ class MainRecyclerViewAdapter(private val click: RecyclerItemClick?) : RecyclerV
                     ProductInfoItemBinding.inflate(inflater, parent, false))
             }
 
-            R.layout.work_time_item -> {
-                AllViewHolders.WorkTimeViewHolder(
-                    WorkTimeItemBinding.inflate(inflater, parent, false))
-            }
-
             R.layout.table_item -> {
                 AllViewHolders.TableViewHolder(
                     TableItemBinding.inflate(inflater, parent, false))
@@ -64,7 +59,6 @@ class MainRecyclerViewAdapter(private val click: RecyclerItemClick?) : RecyclerV
                 holder.bind(model as AllModels.Table)
             }
             is AllViewHolders.ProductInfoViewHolder -> holder.bind(model as AllModels.ProductOfReceipt)
-            is AllViewHolders.WorkTimeViewHolder -> holder.bind(model as AllModels.WorkTime)
         }
     }
 
@@ -78,7 +72,6 @@ class MainRecyclerViewAdapter(private val click: RecyclerItemClick?) : RecyclerV
             is AllModels.Notification -> R.layout.notification_item
             is AllModels.Table -> R.layout.table_item
             is AllModels.ProductOfReceipt -> R.layout.product_info_item
-            is AllModels.WorkTime -> R.layout.work_time_item
             else -> super.getItemViewType(position)
         }
     }

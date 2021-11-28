@@ -22,4 +22,10 @@
     <color name="afternoon_time_work">#FF9C68</color>
     <color name="night_work_time">#7A68B7</color>
 
+    <array name="dot_colors">
+        <item>#4CC179</item>
+        <item>#FF9C68</item>
+        <item>#FFF500</item>
+    </array>
+
 </resources>

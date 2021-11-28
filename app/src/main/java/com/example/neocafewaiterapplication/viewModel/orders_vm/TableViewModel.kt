@@ -12,16 +12,21 @@ import kotlinx.coroutines.launch
 class TableViewModel(private val repository: Repository) : ViewModel() {
 
     val tableList = MutableLiveData<MutableList<AllModels.Table>>()
+    val statusChanged = MutableLiveData<Boolean>()
 
-    init {
-        getTableList()
-    }
-
-    private fun getTableList() {
+    fun getTableList() {
+        "table".logging()
         viewModelScope.launch {
-            "onCleared".logging()
             repository.getAllTables().let {
                 if (it is Resource.Success) tableList.postValue(it.value)
+            }
+        }
+    }
+
+    fun changeStatusToFree(table:String){
+        viewModelScope.launch {
+            repository.changeStatusToFree(table).let {
+                if (it is Resource.Success) statusChanged.postValue(it.value)
             }
         }
     }

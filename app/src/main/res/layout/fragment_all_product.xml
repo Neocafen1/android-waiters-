@@ -1,75 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/main_background_color"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".view.bottom_navigation.menu.all_product.AllProductFragment">
 
     <include
         android:id="@+id/include"
-        layout="@layout/appbar_with_user_and_notification" />
+        layout="@layout/appbar_with_user_and_notification"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
-               android:layout_width="match_parent"
-               android:scrollbars="none"
-               android:layout_height="wrap_content">
-
-               <com.google.android.material.chip.ChipGroup
-                   android:id="@+id/chip_group"
-                   android:layout_width="wrap_content"
-                   app:selectionRequired="true"
-                   app:singleLine="true"
-                   app:singleSelection="true"
-                   android:layout_height="wrap_content">
-
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/coffee"
-                       android:text="@string/coffee"
-                       style="@style/Chip_Custom"/>
-
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/tea"
-                       android:text="@string/tea"
-                       style="@style/Chip_Custom"/>
-
-
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/drinks"
-                       android:text="@string/drinks"
-                       style="@style/Chip_Custom"/>
-
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/desserts"
-                       android:text="@string/dessert"
-                       style="@style/Chip_Custom"/>
-
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/bakery"
-                       android:text="@string/bakery"
-                       style="@style/Chip_Custom"/>
-
-               </com.google.android.material.chip.ChipGroup>
-
-           </HorizontalScrollView>
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
+        android:id="@+id/horizontalScrollView2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/main_enable_color"/>
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/coffee"
+                style="@style/Chip_Custom"
+                android:text="@string/coffee" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tea"
+                style="@style/Chip_Custom"
+                android:text="@string/tea" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/drinks"
+                style="@style/Chip_Custom"
+                android:text="@string/drinks" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/desserts"
+                style="@style/Chip_Custom"
+                android:text="@string/dessert" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/bakery"
+                style="@style/Chip_Custom"
+                android:text="@string/bakery" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
-
-        android:layoutAnimation="@anim/right_layout_animation"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layoutAnimation="@anim/right_layout_animation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontalScrollView2" />
 
+    <com.bhargavms.dotloader.DotLoader
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:color_array="@array/dot_colors"
+        app:dot_radius="@dimen/margin_5_dp"
+        android:layout_marginBottom="@dimen/margin_50_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:number_of_dots="3" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

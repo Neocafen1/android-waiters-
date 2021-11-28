@@ -18,13 +18,15 @@ import com.example.neocafewaiterapplication.view.utils.visible
 import com.example.neocafewaiterapplication.viewModel.orders_vm.ReceiptViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClick {
 
     private lateinit var recyclerAdapter:OrderRecyclerAdapter
-    private val viewModel by viewModel<ReceiptViewModel>()
+    private val viewModel by sharedViewModel<ReceiptViewModel>()
+    private var checkedText = ""
     private val appBar by lazy {activity?.findViewById(R.id.order_app_bar) as AppBarLayout}
     private val bottomNavigationView by lazy {activity?.findViewById(R.id.order_bottom_navigation) as BottomNavigationView}
 
@@ -34,13 +36,12 @@ class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClic
         recyclerAdapter = OrderRecyclerAdapter(this)
         setUpRecycler()
         with(binding){
-            chipGroup.check(R.id.all) // enable данной категории по default
-            recyclerSetList(R.id.all)
+            /*chipGroup.check(R.id.all) // enable данной категории по default
+            recyclerSetList(R.id.all)*/
 
             chipGroup.setOnCheckedChangeListener { _, checkedId ->
                 recyclerSetList(checkedId) //слушатель изменений chip
-                binding.recycler.gone()
-                binding.progress.visible()
+                viewModel.orders.postValue(AllModels.NeoOrder(mutableListOf<AllModels.Order>()))
             }
         }
     }
@@ -53,7 +54,7 @@ class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClic
     }
 
     private fun recyclerSetList(checkedId: Int) {
-        val checkedText = when (checkedId) { // по его id я достаю его имя
+        checkedText = when (checkedId) { // по его id я достаю его имя
             R.id.ready -> "r"
             R.id.canceled -> "ca"
             R.id.new_order -> "new"
@@ -62,9 +63,8 @@ class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClic
         }
         viewModel.getOrders(checkedText) // получаем данные из бэка
         viewModel.orders.observe(viewLifecycleOwner){
-            binding.recycler.visible()
-            binding.progress.gone()
             recyclerAdapter.setList(it.orders)
+            binding.progress.gone()
         }
 
     }
@@ -76,7 +76,7 @@ class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClic
 
     override fun clickListener(model: AllModels) { // Открываем экран о продуктах и сразу мы должны закрыть Toolbar родителя
         hideAppBarAndBottomNavigation()
-        navController.navigate(ReceiptFragmentDirections.actionReceiptFragmentToProductFragment(model as AllModels.Order))
+        navController.navigate(ReceiptFragmentDirections.actionReceiptFragmentToProductFragment(model as AllModels.Order, checkedText))
     }
 
     private fun showAppBarAndBottomNavigation(){

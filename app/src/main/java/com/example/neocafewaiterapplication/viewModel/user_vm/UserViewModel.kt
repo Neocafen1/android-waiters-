@@ -1,5 +1,6 @@
 package com.example.neocafewaiterapplication.viewModel.user_vm
 
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,16 +11,17 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(private val repository: Repository): ViewModel() {
 
-    val schedule = MutableLiveData<MutableList<AllModels>>()
+    val schedule = MutableLiveData<List<AllModels.WorkTime>>()
     val userInfo = MutableLiveData<AllModels.UserInfo>()
     val rating = MutableLiveData<Int>()
+    val isUserInfoChanged = MutableLiveData<Boolean>()
+    
 
     init {
         getSchedule()
-        getUserInfo()
     }
 
-    private fun getUserInfo() {
+    fun getUserInfo() {
         viewModelScope.launch {
             repository.getUserInfo().let {
                 if (it is Resource.Success) userInfo.postValue(it.value)
@@ -30,6 +32,13 @@ class UserViewModel(private val repository: Repository): ViewModel() {
         }
     }
 
+    fun changeNameAndSurname(name:String, surname:String){
+        viewModelScope.launch {
+            repository.changeNameAndSurname(name, surname).let {
+                if (it is Resource.Success) isUserInfoChanged.postValue(it.value)
+            }
+        }
+    }
 
     private fun getSchedule(){
         viewModelScope.launch {
@@ -40,6 +49,9 @@ class UserViewModel(private val repository: Repository): ViewModel() {
             }
         }
     }
+
+
+
 
 
 }

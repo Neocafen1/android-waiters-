@@ -24,12 +24,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <ProgressBar
+    <com.bhargavms.dotloader.DotLoader
         android:id="@+id/progress"
-        android:visibility="gone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="@color/white"
+        android:layout_height="@dimen/margin_100_dp"
+        app:dot_radius="7dp"
+        app:number_of_dots="3"
+        app:color_array="@array/dot_colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="@dimen/margin_100_dp"
