@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentOrderBinding
 import com.example.neocafewaiterapplication.view.root.TabNavigationClass
+import com.example.neocafewaiterapplication.view.utils.navigate
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class OrderFragment : TabNavigationClass(R.layout.fragment_order) {
@@ -47,8 +48,8 @@ class OrderFragment : TabNavigationClass(R.layout.fragment_order) {
             }
         }
 
-        binding.notification.setOnClickListener { findNavController().navigate(OrderFragmentDirections.actionOrderFragmentToNotificationFragment2()) }
-        binding.user.setOnClickListener { findNavController().navigate(OrderFragmentDirections.actionOrderFragmentToUserFragment()) }
+        binding.notification.setOnClickListener { navigate(OrderFragmentDirections.actionOrderFragmentToNotificationFragment2()) }
+        binding.user.setOnClickListener { navigate(OrderFragmentDirections.actionOrderFragmentToUserFragment()) }
 
         return binding.root
     }

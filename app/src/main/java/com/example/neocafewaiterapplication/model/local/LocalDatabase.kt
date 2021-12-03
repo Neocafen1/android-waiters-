@@ -11,12 +11,6 @@ class LocalDatabase (context: Context) {
 
     private val editor = prefs.edit()
 
-    fun saveUserName(name: String?){
-        if (name != null){
-            editor.putString(Consts.NAME,name).apply()
-        }
-    }
-
     fun saveAccessToken(token: String?) {
         editor.putString(Consts.ACCESS, token)
         editor.apply()
@@ -34,12 +28,22 @@ class LocalDatabase (context: Context) {
         }
     }
 
-    fun fetchAccessToken(): String? {
-        return prefs.getString(Consts.ACCESS, null)
+    fun saveUserPassword(password:String?){
+        if (password != null) {
+            editor.putString(Consts.PASSWORD, password)
+            editor.apply()
+        }
     }
 
-    fun fetchUserName():String? {
-        return prefs.getString(Consts.NAME, null)
+    fun saveIsRegister(status:Boolean?){
+        if (status != null) {
+            editor.putBoolean(Consts.STATUS, status)
+            editor.apply()
+        }
+    }
+
+    fun fetchAccessToken(): String? {
+        return prefs.getString(Consts.ACCESS, null)
     }
 
     fun fetchRefreshToken(): String? {
@@ -50,7 +54,15 @@ class LocalDatabase (context: Context) {
         return prefs.getInt(Consts.PHONE_NUMBER, 0)
     }
 
+    fun fetchUserPassword():String?{
+        return prefs.getString(Consts.PASSWORD, null)
+    }
+
+    fun fetchRegistrationStatus():Boolean{
+        return prefs.getBoolean(Consts.STATUS, false)
+    }
+
     fun clearData() {
-        prefs.edit().remove(Consts.ACCESS).remove(Consts.REFRESH).remove(Consts.PHONE_NUMBER).remove(Consts.NAME).apply()
+        prefs.edit().remove(Consts.ACCESS).remove(Consts.REFRESH).remove(Consts.PHONE_NUMBER).remove(Consts.PASSWORD).remove(Consts.STATUS).apply()
     }
 }

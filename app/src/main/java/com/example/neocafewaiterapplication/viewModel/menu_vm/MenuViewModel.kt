@@ -2,6 +2,7 @@ package com.example.neocafewaiterapplication.viewModel.menu_vm
 
 import androidx.lifecycle.ViewModel
 import com.example.neocafewaiterapplication.R
+import com.example.neocafewaiterapplication.view.utils.logging
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
 
 class MenuViewModel : ViewModel() {
@@ -18,4 +19,8 @@ class MenuViewModel : ViewModel() {
         return list
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        "Cleared".logging()
+    }
 }

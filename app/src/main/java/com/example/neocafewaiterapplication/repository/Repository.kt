@@ -34,10 +34,6 @@ class Repository(
         return safeApiCall { staffApi.getWaitersData() }
     }
 
-    suspend fun saveUserInfo(userInfo:AllModels.UserInfo):Resource<Boolean>{
-        return safeApiCall { registrationAPI.saveUserInfo(userInfo)}
-    }
-
     suspend fun getAllTables():Resource<MutableList<AllModels.Table>>{
         return safeApiCall { menuAPi.getAllTables() }
     }
@@ -68,6 +64,26 @@ class Repository(
 
     suspend fun closeOrder(id:Int):Resource<Boolean>{
         return safeApiCall { menuAPi.closeOrder(id) }
+    }
+
+    suspend fun saveFCM(model:AllModels.FCM_token):Resource<Boolean>{
+        return safeApiCall { staffApi.postFCMToken(model) }
+    }
+
+    suspend fun getNotification():Resource<MutableList<AllModels.Notification>>{
+        return safeApiCall { staffApi.getNotifications() }
+    }
+
+    suspend fun deleteAllNotifications():Resource<Boolean>{
+        return safeApiCall { staffApi.deleteAllNotifications() }
+    }
+
+    suspend fun deleteNotifications(id:Int):Resource<Boolean>{
+        return safeApiCall { staffApi.deleteUserNotifications("W", id) }
+    }
+
+    suspend fun checkUser(model:AllModels.UserData):Resource<Boolean>{
+        return safeApiCall { staffApi.checkUser(model) }
     }
 
 }

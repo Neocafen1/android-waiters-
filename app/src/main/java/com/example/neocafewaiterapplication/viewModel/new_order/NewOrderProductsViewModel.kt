@@ -18,7 +18,7 @@ class NewOrderProductsViewModel(private val repository: Repository) : ViewModel(
     var sortedList = mutableListOf<AllModels.Product>()
     val finishList = mutableListOf<AllModels.Product>() // list для итогового чека
     val productLiveData = MutableLiveData<MutableList<AllModels.Product>>()
-    val isProductListSent = MutableLiveData<Boolean>()
+    val isProductListSent = MutableLiveData<Boolean?>()
 
     init {getAllProduct()}
 
@@ -33,7 +33,10 @@ class NewOrderProductsViewModel(private val repository: Repository) : ViewModel(
     }
 
     fun updateProductList(){
-        getAllProduct()
+        productLiveData.value?.let {
+            it.forEach { product ->
+                product.county = 0 }
+        }
     }
 
     fun getProductsTotalPrice():Int{ // В начале получаем итоговую цену

@@ -12,6 +12,7 @@ import com.example.neocafewaiterapplication.view.root.BaseFragment
 import com.example.neocafewaiterapplication.view.utils.delegates.RecyclerItemClick
 import com.example.neocafewaiterapplication.view.utils.gone
 import com.example.neocafewaiterapplication.view.utils.logging
+import com.example.neocafewaiterapplication.view.utils.navigate
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.OrderRecyclerAdapter
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
 import com.example.neocafewaiterapplication.view.utils.visible
@@ -24,7 +25,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClick {
 
-    private lateinit var recyclerAdapter:OrderRecyclerAdapter
+    private val recyclerAdapter by lazy {OrderRecyclerAdapter(this)}
     private val viewModel by sharedViewModel<ReceiptViewModel>()
     private var checkedText = ""
     private val appBar by lazy {activity?.findViewById(R.id.order_app_bar) as AppBarLayout}
@@ -33,16 +34,26 @@ class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClic
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showAppBarAndBottomNavigation()
-        recyclerAdapter = OrderRecyclerAdapter(this)
         setUpRecycler()
         with(binding){
-            /*chipGroup.check(R.id.all) // enable данной категории по default
-            recyclerSetList(R.id.all)*/
-
+            recycler.gone()
+            progress.visible()
             chipGroup.setOnCheckedChangeListener { _, checkedId ->
                 recyclerSetList(checkedId) //слушатель изменений chip
                 viewModel.orders.postValue(AllModels.NeoOrder(mutableListOf<AllModels.Order>()))
             }
+
+        }
+        viewModel.orders.observe(viewLifecycleOwner){
+            if (it.orders.isEmpty()){
+                binding.empty.visible()
+                binding.recycler.gone()
+            }else{
+                binding.empty.gone()
+                binding.recycler.visible()
+                recyclerAdapter.setList(it.orders)
+            }
+            binding.progress.gone()
         }
     }
 
@@ -62,11 +73,6 @@ class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClic
             else -> "all"
         }
         viewModel.getOrders(checkedText) // получаем данные из бэка
-        viewModel.orders.observe(viewLifecycleOwner){
-            recyclerAdapter.setList(it.orders)
-            binding.progress.gone()
-        }
-
     }
 
 
@@ -76,7 +82,7 @@ class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(), RecyclerItemClic
 
     override fun clickListener(model: AllModels) { // Открываем экран о продуктах и сразу мы должны закрыть Toolbar родителя
         hideAppBarAndBottomNavigation()
-        navController.navigate(ReceiptFragmentDirections.actionReceiptFragmentToProductFragment(model as AllModels.Order, checkedText))
+        navigate(ReceiptFragmentDirections.actionReceiptFragmentToProductFragment(model as AllModels.Order, checkedText))
     }
 
     private fun showAppBarAndBottomNavigation(){

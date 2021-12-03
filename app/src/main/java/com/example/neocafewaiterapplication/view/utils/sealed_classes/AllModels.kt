@@ -9,6 +9,8 @@ sealed class AllModels : Serializable {
         val orders: MutableList<Order>
     )
 
+    data class UserData(val number:String, val password: String)
+
     data class  Order(
         val bonus: Int,
         val total_sum: Int,
@@ -57,9 +59,11 @@ sealed class AllModels : Serializable {
                          val title: String,
                          var county: Int): AllModels()
 
-    data class Notification (val status:String, val products:String, val time:String): AllModels()
+    data class FCM_token(val reg_id:String, val role:String)
 
-    data class Table (val id:Int, val qrCode:String, val user:String?):AllModels()
+    data class Notification (val id: Int, val title: String, val description: String, val date:String, val time:String): AllModels()
+
+    data class Table (val id:Int, val qrCode:String, val user:String?, val number:String):AllModels()
 
     data class UserInfo(val number:Int, val first_name:String, val last_name:String, val birthDate:String?, val password:String)
 

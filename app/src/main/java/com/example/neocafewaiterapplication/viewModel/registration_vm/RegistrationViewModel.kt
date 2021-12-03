@@ -14,8 +14,9 @@ import kotlinx.coroutines.launch
 class RegistrationViewModel(private val repository: Repository) : ViewModel() {
 
     val token = MutableLiveData<AllModels.Token>()
-    val isNumberInBack = MutableLiveData<Boolean>()
-    val userCreated = MutableLiveData<Boolean>()
+    val isNumberInBack = MutableLiveData<Boolean?>()
+    val isPasswordCorrect = MutableLiveData<Boolean?>()
+    val isFcmSaved = MutableLiveData<Boolean>()
 
     fun getToken(number: Int, uid: String) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -33,13 +34,20 @@ class RegistrationViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun saveData(userInfo: AllModels.UserInfo){
+    fun saveFCM(model:AllModels.FCM_token){
         viewModelScope.launch {
-            repository.saveUserInfo(userInfo).let {
-                if (it is Resource.Success){
-                    userCreated.postValue(true)
-                }
+            repository.saveFCM(model).let {
+                if (it is Resource.Success) this@RegistrationViewModel.isFcmSaved.postValue(it.value)
             }
         }
     }
+
+    fun checkUser(model:AllModels.UserData){
+        viewModelScope.launch {
+            repository.checkUser(model).let {
+                if (it is Resource.Success) isPasswordCorrect.postValue(it.value)
+            }
+        }
+    }
+
 }

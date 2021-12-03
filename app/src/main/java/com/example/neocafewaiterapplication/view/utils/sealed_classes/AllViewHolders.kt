@@ -24,7 +24,7 @@ sealed class AllViewHolders(binding: ViewBinding) : RecyclerView.ViewHolder(bind
     class NotificationViewHolder(val binding: NotificationItemBinding) : AllViewHolders(binding) {
 
         fun bind(item: AllModels.Notification) {
-            val color = when (item.status) {
+            val color = when (item.title) {
                 "Заказ готов" -> R.color.main_enable_color
                 "Бариста принял заказ" -> R.color.main_enable_color
                 else -> R.color.white
@@ -32,9 +32,9 @@ sealed class AllViewHolders(binding: ViewBinding) : RecyclerView.ViewHolder(bind
 
             with(binding) {
                 status.setTextColor(ContextCompat.getColor(status.context, color))
-                status.text = item.status
+                status.text = item.title
                 time.text = item.time
-                receipt.text = item.products
+                receipt.text = item.description
             }
         }
     }
@@ -43,7 +43,7 @@ sealed class AllViewHolders(binding: ViewBinding) : RecyclerView.ViewHolder(bind
 
         @SuppressLint("SetTextI18n")
         fun bind(item: AllModels.Table) {
-            binding.tableNumber.text = "Стол №${item.id}"
+            binding.tableNumber.text = "Стол №${item.number}"
 
             if (item.user == null) setData(Consts.FREE_COLOR, "Свободен")
             else setData(Consts.RED, "Занят")

@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.neocafewaiterapplication.databinding.ProductCardWithQuantityItemBinding
 import com.example.neocafewaiterapplication.view.utils.delegates.SecondRecyclerItemClick
+import com.example.neocafewaiterapplication.view.utils.logging
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
+import com.example.neocafewaiterapplication.view.utils.setSafeOnClickListener
 
 class FinalProductReceiptRecyclerAdapter(private val clicker: SecondRecyclerItemClick) :
     RecyclerView.Adapter<FinalProductReceiptRecyclerAdapter.ViewHolder>() {
@@ -28,14 +30,14 @@ class FinalProductReceiptRecyclerAdapter(private val clicker: SecondRecyclerItem
                 binding.price.text = "($price за шт)"
                 binding.totalPrice.text = "${price*county} c"
 
-                binding.plus.setOnClickListener {
+                binding.plus.setSafeOnClickListener {
                     county++
                     binding.totalPrice.text = "${price*county} c"
                     binding.quantity.text = county.toString()
                     clicker.clickListener("+", this)
                 }
 
-                binding.minus.setOnClickListener {
+                binding.minus.setSafeOnClickListener {
                     if (county > 0) {
                         county--
                         binding.totalPrice.text = "${price*county} c"
@@ -43,7 +45,7 @@ class FinalProductReceiptRecyclerAdapter(private val clicker: SecondRecyclerItem
                         clicker.clickListener("-", this)
                         if (county == 0) {
                             list.removeAt(position)
-                            notifyItemChanged(position)
+                            notifyDataSetChanged()
                         }
                     }
                 }

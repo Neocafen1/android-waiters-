@@ -12,6 +12,7 @@ import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentNewOrderMenuBinding
 import com.example.neocafewaiterapplication.view.root.BaseFragment
 import com.example.neocafewaiterapplication.view.utils.delegates.RecyclerItemClick
+import com.example.neocafewaiterapplication.view.utils.navigate
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.ItemOffsetDecoration
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.MainRecyclerViewAdapter
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
@@ -48,13 +49,13 @@ class NewOrderMenu : BaseFragment<FragmentNewOrderMenuBinding>(),RecyclerItemCli
 
     override fun clickListener(model: AllModels) {
         model as AllModels.Menu
-        navController.navigate(NewOrderMenuDirections.actionNewOrderMenuToNewOrderProducts(model.category, args.tableNumber))
+        navigate(NewOrderMenuDirections.actionNewOrderMenuToNewOrderProducts(model.category, args.tableNumber))
     }
 
     override fun setUpAppBar() {
         with(binding.appBar) {
             back.setOnClickListener { navController.navigateUp() }
-            notification.setOnClickListener { navController.navigate(NewOrderMenuDirections.actionNewOrderMenuToNotificationFragment3()) }
+            notification.setOnClickListener { navigate(NewOrderMenuDirections.actionNewOrderMenuToNotificationFragment3()) }
         }
     }
 }

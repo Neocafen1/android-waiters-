@@ -1,146 +1,118 @@
 package com.example.neocafewaiterapplication.view.registration
 
 import `in`.aabhasjindal.otptextview.OTPListener
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.neocafeteae1prototype.data.local.LocalDatabase
 import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentOTPBinding
-import com.example.neocafewaiterapplication.view.utils.showToast
-import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
-import java.util.concurrent.TimeUnit
+import com.example.neocafewaiterapplication.view.root.BaseFragment
+import com.example.neocafewaiterapplication.view.utils.navigate
+import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
+import com.example.neocafewaiterapplication.view.utils.visible
+import com.example.neocafewaiterapplication.viewModel.registration_vm.RegistrationViewModel
+import com.google.firebase.messaging.FirebaseMessaging
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class OTPFragment : Fragment() {
+class OTPFragment : BaseFragment<FragmentOTPBinding>() {
 
-    private var binding: FragmentOTPBinding? = null
     private val args: OTPFragmentArgs by navArgs()
-    private lateinit var firebaseCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private var phoneNumber = 0
-    private var id: String = ""
+    private val viewModel by viewModel<RegistrationViewModel>()
+    private val localDatabase: LocalDatabase by inject()
 
 
-    @SuppressLint("SetTextI18n")
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentOTPBinding.inflate(inflater, container, false)
-
-        binding?.alertMessage?.text = "Код отправлен на номер ${args.phoneNumber}"
-        binding?.backIcon?.setOnClickListener { findNavController().navigateUp() }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         phoneNumber = args.phoneNumber
-        binding?.repeat?.setOnClickListener { signInWithCredential() }
-        startTimer()
-        with(binding!!) {
-            alertMessage.text =
-                "Введите код который дал администратор по номеру ${args.phoneNumber}"
-            confirm.setOnClickListener { findNavController().navigate(OTPFragmentDirections.actionOTPFragmentToRegisterUserFragment(phoneNumber)) }
-        }
-        firebaseCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
-                signIn(p0)
-            }
-
-            override fun onVerificationFailed(p0: FirebaseException) {
-                p0.message!!.showToast(requireContext(), Toast.LENGTH_LONG)
-            }
-
-            override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
-                id = p0
-                "Сообщение отправлено. Ждите".showToast(requireContext(), Toast.LENGTH_LONG)
-            }
-        }
-        sendMessage()
         otpListener()
-
-        return binding?.root
-    }
-
-    private fun sendMessage() { // Send Message to Firebase
-        PhoneAuthOptions.newBuilder()
-            .setActivity(requireActivity())
-            .setPhoneNumber("+996$phoneNumber")
-            .setTimeout(30L, TimeUnit.SECONDS)
-            .setCallbacks(firebaseCallback)
-            .build()
-            .apply {
-                PhoneAuthProvider.verifyPhoneNumber(this)
-            }
-    }
-
-    private fun signIn(phone: PhoneAuthCredential) { // Заходит открывает следущее окно если номер в этом телефоне
-        FirebaseAuth.getInstance().signInWithCredential(phone).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                binding?.otp?.setOTP(phone.smsCode ?: "000000")
-                findNavController().navigate(OTPFragmentDirections.actionOTPFragmentToRegisterUserFragment(phoneNumber))
+        binding.confirm.setOnClickListener {
+            localDatabase.saveUserNumber(phoneNumber)
+            localDatabase.saveUserPassword(binding.otp.otp)
+            getToken()
+        }
+        viewModel.isPasswordCorrect.observe(viewLifecycleOwner){
+            with(binding){
+                it?.let{
+                    if (it){
+                        confirm.apply {
+                            isEnabled = true
+                            background = ContextCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.button_enable_custom_style
+                            )
+                        }
+                    }else if(!it) {
+                        typeCode.apply {
+                            setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                            text = "Неверный код*"
+                        }
+                    }
+                }
             }
         }
-
     }
 
     private fun otpListener() {
-        binding?.otp?.otpListener = object : OTPListener {
+        binding.otp.otpListener = object : OTPListener {
             override fun onInteractionListener() {
-                binding?.repeat?.background = ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.button_disable_custom_item
-                )
+                binding.typeCode.apply {
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    text = "Введите код"
+                }
+                binding.confirm.apply {
+                    isEnabled = false
+                    background = ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.button_disable_custom_item
+                    )
+                }
             }
 
             override fun onOTPComplete(otp: String) {
-                binding?.repeat?.background = ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.button_enable_custom_style
-                )
-                binding?.repeat?.isEnabled = true
+                checkUser(otp)
             }
         }
     }
 
-    private fun signInWithCredential() {
-        val phoneAuthCredential = PhoneAuthProvider.getCredential(id, binding?.otp?.otp!!)
-        FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    findNavController().navigate(OTPFragmentDirections.actionOTPFragmentToRegisterUserFragment(phoneNumber))
-                }
-            }
+    private fun checkUser(password:String){ // Идет проверка пароля если пароль совпадает то только тогда проходит дальше (из за проблем в беке приходится так делайть)
+        viewModel.checkUser(AllModels.UserData(phoneNumber.toString(), password))
     }
 
-    private fun startTimer() {
-        object : CountDownTimer(30000, 1000) {
-            @SuppressLint("SetTextI18n")
-            override fun onTick(millisUntilFinished: Long) {
-                binding?.repeat?.isEnabled = false
-                binding?.repeat?.text =
-                    "Отправить повторно ${millisUntilFinished / 1000}"
+    //Получаем JWT токен
+    private fun getToken(){
+        binding.progress.visible()
+        viewModel.getToken(phoneNumber, binding.otp.otp!!)
+        viewModel.token.observe(viewLifecycleOwner){
+            localDatabase.saveRefreshToken(it.refresh)
+            localDatabase.saveAccessToken(it.access)
+            FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
+                saveFcmToken(token)
             }
-
-            @SuppressLint("SetTextI18n")
-            override fun onFinish() {
-                binding?.repeat?.text = "Отправить повторно"
-                binding?.repeat?.isEnabled = true
-                binding?.repeat?.background = ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.button_enable_custom_style
-                )
-            }
-        }.start()
+        }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+    // Сохраняем FCM токен
+    private fun saveFcmToken(token: String) {
+        viewModel.saveFCM(AllModels.FCM_token(token, "W"))
+        viewModel.isFcmSaved.observe(viewLifecycleOwner){
+            if (it) {
+                localDatabase.saveIsRegister(true)
+                navigate(OTPFragmentDirections.actionOTPFragmentToBottomNavigationFragment2())
+            }
+        }
+    }
+
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup?): FragmentOTPBinding {
+        return FragmentOTPBinding.inflate(layoutInflater)
+    }
+
+    override fun setUpAppBar() {
+        binding.backIcon.setOnClickListener { navController.navigateUp() }
     }
 }

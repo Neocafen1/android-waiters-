@@ -46,4 +46,7 @@
     <string name="if_message_null">Если код не пришел, нажмите кнопку отправить повторно</string>
     <string name="send_again">Отправить повторно</string>
     <string name="exit">Выйти</string>
+    <string name="alerta_message">Введите код который который дал администратор</string>
+    <string name="notification_empty">Пока что уведомлений нет</string>
+    <string name="empty">Пусто</string>
 </resources>

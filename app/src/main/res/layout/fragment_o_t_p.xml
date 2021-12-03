@@ -30,10 +30,12 @@
 
         <TextView
             android:id="@+id/alertMessage"
-            android:layout_width="@dimen/margin_250_dp"
             style="@style/TextView_Roboto_14sp"
+            android:layout_width="@dimen/margin_250_dp"
             android:layout_marginTop="@dimen/margin_10_dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/alerta_message"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -65,53 +67,29 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/confirm"
             style="@style/Button_Default"
-            android:layout_marginTop="@dimen/margin_25_dp"
             android:layout_marginStart="@dimen/margin_16_dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/margin_25_dp"
             android:layout_marginEnd="@dimen/margin_16_dp"
+            android:background="@drawable/button_disable_custom_item"
             android:enabled="false"
             android:text="@string/confirm"
-            android:background="@drawable/button_disable_custom_item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/otp" />
 
-        <TextView
-            android:id="@+id/textView7"
-            style="@style/TextView_Roboto_14sp"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/margin_30_dp"
-            android:text="@string/if_message_null"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:layout_marginStart="@dimen/margin_16_dp"
-            android:layout_marginEnd="@dimen/margin_16_dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirm" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/repeat"
-            style="@style/Button_Default"
-            android:layout_marginTop="@dimen/margin_25_dp"
-            android:layout_marginStart="@dimen/margin_16_dp"
-            android:layout_marginEnd="@dimen/margin_16_dp"
-            android:enabled="false"
-            android:text="@string/send_again"
-            android:background="@drawable/button_disable_custom_item"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-        <ProgressBar
+        <com.bhargavms.dotloader.DotLoader
+            android:id="@+id/progress"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_height="@dimen/margin_100_dp"
+            android:layout_marginBottom="@dimen/margin_50_dp"
+            app:color_array="@array/dot_colors"
+            app:dot_radius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/margin_30_dp"
-            android:indeterminateTint="@color/main_enable_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/repeat" />
-
-
+            app:number_of_dots="3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

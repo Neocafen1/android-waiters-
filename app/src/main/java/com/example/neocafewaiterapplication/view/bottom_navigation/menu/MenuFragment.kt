@@ -9,6 +9,7 @@ import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentMenuBinding
 import com.example.neocafewaiterapplication.view.root.BaseFragment
 import com.example.neocafewaiterapplication.view.utils.delegates.RecyclerItemClick
+import com.example.neocafewaiterapplication.view.utils.navigate
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.ItemOffsetDecoration
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.MainRecyclerViewAdapter
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
@@ -42,14 +43,14 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(), RecyclerItemClick {
 
     override fun clickListener(model: AllModels) {
         model as AllModels.Menu
-        navController.navigate(MenuFragmentDirections.actionMenuFragmentToAllProductFragment(model.category))
+        navigate(MenuFragmentDirections.actionMenuFragmentToAllProductFragment(model.category))
     }
 
     override fun setUpAppBar() {
         with(binding.include){
             title.text = resources.getText(R.string.menu)
-            notification.setOnClickListener { navController.navigate(MenuFragmentDirections.actionMenuFragmentToNotificationFragment()) }
-            user.setOnClickListener { navController.navigate(MenuFragmentDirections.actionMenuFragmentToUserFragment3()) }
+            notification.setOnClickListener { navigate(MenuFragmentDirections.actionMenuFragmentToNotificationFragment()) }
+            user.setOnClickListener { navigate(MenuFragmentDirections.actionMenuFragmentToUserFragment3()) }
         }
     }
 }

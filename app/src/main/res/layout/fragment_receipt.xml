@@ -84,6 +84,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:number_of_dots="3" />
 
+    <TextView
+        android:id="@+id/empty"
+        android:visibility="gone"
+        style="@style/TextView_Roboto_14sp"
+        android:text="@string/empty"
+        android:textColor="#C1BFCB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"

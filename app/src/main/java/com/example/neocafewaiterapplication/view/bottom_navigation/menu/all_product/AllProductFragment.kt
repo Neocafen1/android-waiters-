@@ -11,6 +11,7 @@ import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentAllProductBinding
 import com.example.neocafewaiterapplication.view.root.BaseFragment
 import com.example.neocafewaiterapplication.view.utils.gone
+import com.example.neocafewaiterapplication.view.utils.navigate
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.AllProductsRecyclerAdapter
 import com.example.neocafewaiterapplication.viewModel.menu_vm.AllProductViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -41,8 +42,6 @@ class AllProductFragment : BaseFragment<FragmentAllProductBinding>() {
                 recyclerSetList(checkedId) //слушатель изменений chip
             }
         }
-
-
     }
 
     private fun setUpRecycler() {
@@ -73,8 +72,8 @@ class AllProductFragment : BaseFragment<FragmentAllProductBinding>() {
 
     override fun setUpAppBar() {
         with(binding.include){
-            notification.setOnClickListener { navController.navigate(AllProductFragmentDirections.actionAllProductFragmentToNotificationFragment()) }
-            user.setOnClickListener { navController.navigate(AllProductFragmentDirections.actionAllProductFragmentToUserFragment3()) }
+            notification.setOnClickListener { navigate(AllProductFragmentDirections.actionAllProductFragmentToNotificationFragment()) }
+            user.setOnClickListener { navigate(AllProductFragmentDirections.actionAllProductFragmentToUserFragment3()) }
         }
 
     }

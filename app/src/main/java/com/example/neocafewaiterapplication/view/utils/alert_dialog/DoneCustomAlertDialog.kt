@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,5 +44,13 @@ class DoneCustomAlertDialog(private val title:String) : BaseAlertDialog<DoneItem
             avd2 = drawable as AnimatedVectorDrawable
             avd2.start()
         }
+        object : CountDownTimer(2000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+            }
+
+            override fun onFinish() {
+                dismiss()
+            }
+        }.start()
     }
 }

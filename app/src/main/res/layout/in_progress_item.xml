@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:backgroundTint="@color/card_view_background"
+    android:background="@drawable/rounded_alert_dialog"
+    android:layout_height="180dp">
+
+    <com.bhargavms.dotloader.DotLoader
+        android:id="@+id/dotLoader"
+        android:layout_width="91dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="@dimen/margin_30_dp"
+        app:dot_radius="7dp"
+        app:color_array="@array/dot_colors"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:number_of_dots="4" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_marginStart="@dimen/margin_10_dp"
+        android:layout_marginEnd="@dimen/margin_10_dp"
+        android:textAlignment="center"
+        style="@style/TextView_Roboto_18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dotLoader"
+        tools:text="Hello world" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

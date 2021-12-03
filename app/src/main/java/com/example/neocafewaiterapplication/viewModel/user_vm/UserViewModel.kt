@@ -14,7 +14,7 @@ class UserViewModel(private val repository: Repository): ViewModel() {
     val schedule = MutableLiveData<List<AllModels.WorkTime>>()
     val userInfo = MutableLiveData<AllModels.UserInfo>()
     val rating = MutableLiveData<Int>()
-    val isUserInfoChanged = MutableLiveData<Boolean>()
+    val isUserInfoChanged = MutableLiveData<Boolean?>()
     
 
     init {

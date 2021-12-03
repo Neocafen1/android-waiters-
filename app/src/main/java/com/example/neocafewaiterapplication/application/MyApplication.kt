@@ -10,6 +10,7 @@ import com.example.neocafewaiterapplication.viewModel.new_order.NewOrderProducts
 import com.example.neocafewaiterapplication.viewModel.orders_vm.ReceiptViewModel
 import com.example.neocafewaiterapplication.viewModel.orders_vm.TableViewModel
 import com.example.neocafewaiterapplication.koin.retrofitModule
+import com.example.neocafewaiterapplication.viewModel.notification_vm.NotificationViewModel
 import com.example.neocafewaiterapplication.viewModel.registration_vm.RegistrationViewModel
 import com.example.neocafewaiterapplication.viewModel.user_vm.UserViewModel
 import org.koin.android.ext.koin.androidContext
@@ -50,6 +51,7 @@ val myModule = module {
     viewModel { MenuViewModel() }
     viewModel { ReceiptViewModel(get()) }
     viewModel { NewOrderViewModel(get()) }
+    viewModel { NotificationViewModel(get()) }
 
     single { LocalDatabase(androidContext().applicationContext) }
 }

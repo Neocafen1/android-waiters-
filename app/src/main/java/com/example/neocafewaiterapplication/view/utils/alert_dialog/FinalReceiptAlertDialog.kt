@@ -8,12 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.CustomAlertDialogItemBinding
-import com.example.neocafewaiterapplication.view.utils.notClickable
 
-class CustomAlertDialog(val title:String, val function:() -> Unit) : BaseAlertDialog<CustomAlertDialogItemBinding>() {
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup?): CustomAlertDialogItemBinding {
-        return CustomAlertDialogItemBinding.inflate(inflater)
-    }
+class FinalReceiptAlertDialog(val title:String, val positive:() -> Unit, val negative:() -> Unit) : BaseAlertDialog<CustomAlertDialogItemBinding>() {
 
     override fun onResume() {
         super.onResume()
@@ -28,14 +24,20 @@ class CustomAlertDialog(val title:String, val function:() -> Unit) : BaseAlertDi
         binding.title.text = title
 
         binding.negative.setOnClickListener {
+            negative()
             dismiss()
         }
-        binding.close.setOnClickListener { dismiss() }
+        binding.close.setOnClickListener {
+            negative()
+            dismiss() }
 
         binding.positive.setOnClickListener {
-            function()
-            it.notClickable()
+            positive()
             dismiss()
         }
+    }
+
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup?, ): CustomAlertDialogItemBinding {
+        return CustomAlertDialogItemBinding.inflate(inflater)
     }
 }

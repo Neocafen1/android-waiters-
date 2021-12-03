@@ -12,10 +12,9 @@ import kotlinx.coroutines.launch
 class TableViewModel(private val repository: Repository) : ViewModel() {
 
     val tableList = MutableLiveData<MutableList<AllModels.Table>>()
-    val statusChanged = MutableLiveData<Boolean>()
+    val statusChanged = MutableLiveData<Boolean?>()
 
     fun getTableList() {
-        "table".logging()
         viewModelScope.launch {
             repository.getAllTables().let {
                 if (it is Resource.Success) tableList.postValue(it.value)

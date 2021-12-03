@@ -13,8 +13,10 @@ import com.example.neocafewaiterapplication.view.root.BaseFragment
 import com.example.neocafewaiterapplication.view.utils.alert_dialog.ProductAlertDialog
 import com.example.neocafewaiterapplication.view.utils.delegates.RecyclerItemClick
 import com.example.neocafewaiterapplication.view.utils.gone
+import com.example.neocafewaiterapplication.view.utils.navigate
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.AllProductsRecyclerAdapter
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
+import com.example.neocafewaiterapplication.view.utils.setSafeOnClickListener
 import com.example.neocafewaiterapplication.viewModel.new_order.NewOrderProductsViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -36,7 +38,7 @@ class NewOrderProducts : BaseFragment<FragmentNewOrderProductsBinding>(), Recycl
         updateVisibility(viewModel.getProductsTotalPrice())
         with(binding) {
             tableNumber.text = "Стол №${args.tableNumber}"
-            takeOrder.setOnClickListener { navController.navigate(NewOrderProductsDirections.actionNewOrderProductsToFinalReceiptFragment(args.tableNumber)) }
+            takeOrder.setSafeOnClickListener { navigate(NewOrderProductsDirections.actionNewOrderProductsToFinalReceiptFragment(args.tableNumber)) }
 
             val viewId = mapOfCategory[args.category] // Через safe args узнаем какую категорию он выбрал
             if (viewId != null) {
@@ -60,7 +62,7 @@ class NewOrderProducts : BaseFragment<FragmentNewOrderProductsBinding>(), Recycl
     override fun setUpAppBar() { // set clickListener to AppBar buttons
         with(binding.appBar) {
             back.setOnClickListener { navController.navigateUp() }
-            notification.setOnClickListener { navController.navigate(NewOrderProductsDirections.actionNewOrderProductsToNotificationFragment3()) }
+            notification.setOnClickListener { navigate(NewOrderProductsDirections.actionNewOrderProductsToNotificationFragment3()) }
         }
     }
 
@@ -96,7 +98,6 @@ class NewOrderProducts : BaseFragment<FragmentNewOrderProductsBinding>(), Recycl
             viewModel.totalPriceAfterQuanityChange(it, method, name)
         }
         updateVisibility(viewModel.getProductsTotalPrice())
-
     }
 
     @SuppressLint("SetTextI18n")

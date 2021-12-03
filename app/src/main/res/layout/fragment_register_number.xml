@@ -4,22 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:layout_alignParentBottom="true"
+    android:fillViewport="true"
     android:orientation="vertical"
     tools:context=".view.registration.RegisterNumberFragment">
-    
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/Constraint_Layout_Default">
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/Constraint_Layout_Default">
 
         <TextView
             android:id="@+id/sign_in"
-            android:text="@string/sign_in"
+            style="@style/Title_Text_34sp"
             android:layout_marginTop="120dp"
+            android:text="@string/sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/Title_Text_34sp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView"
@@ -42,10 +41,10 @@
             <TextView
                 android:id="@+id/number_code"
                 style="@style/TextView_Roboto_18sp"
-                android:text="@string/kg_number_code"
-                android:textColor="@color/grey"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_5_dp"
-                android:layout_gravity="center_vertical"/>
+                android:text="@string/kg_number_code"
+                android:textColor="@color/grey" />
 
 
             <com.vicmikhailau.maskededittext.MaskedEditText
@@ -53,29 +52,42 @@
                 style="@style/EditText_Default"
                 android:gravity="center"
                 android:hint="705-343-434"
-                app:mask="###-###-###"
                 android:inputType="number"
-                android:maxLength="11" />
+                android:maxLength="11"
+                app:mask="###-###-###" />
 
         </androidx.cardview.widget.CardView>
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/next"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/margin_50_dp"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Button_Default"
             android:layout_marginStart="@dimen/margin_16_dp"
-            android:text="@string/next"
-            android:background="@drawable/button_disable_custom_item"
+            android:layout_marginTop="@dimen/margin_50_dp"
+            android:textAllCaps="false"
             android:layout_marginEnd="@dimen/margin_16_dp"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            style="@style/Button_Default">
+            android:background="@drawable/button_disable_custom_item"
+            android:text="@string/next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         </androidx.appcompat.widget.AppCompatButton>
 
+        <com.bhargavms.dotloader.DotLoader
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:color_array="@array/dot_colors"
+            app:dot_radius="@dimen/margin_5_dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/next"
+            app:number_of_dots="3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
 
 </androidx.core.widget.NestedScrollView>

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class ReceiptViewModel(private val repository: Repository) : ViewModel() {
 
     val orders = MutableLiveData<AllModels.NeoOrder>()
-    val isOrderClosed = MutableLiveData<Boolean>()
+    val isOrderClosed = MutableLiveData<Boolean?>()
 
     fun getOrders(status:String){
         viewModelScope.launch {

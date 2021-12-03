@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_receipt" >
         <action
             android:id="@+id/action_receiptFragment_to_productFragment"
-            app:destination="@id/productFragment" />
+            app:destination="@id/productFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_in"
+            app:popEnterAnim="@anim/right_in"
+            app:popExitAnim="@anim/left_in" />
     </fragment>
     <fragment
         android:id="@+id/productFragment"
@@ -21,7 +25,11 @@
         tools:layout="@layout/fragment_product" >
         <action
             android:id="@+id/action_productFragment_to_notificationFragment4"
-            app:destination="@id/notificationFragment4" />
+            app:destination="@id/notificationFragment4"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/down_in"
+            app:popEnterAnim="@anim/up_in"
+            app:popExitAnim="@anim/down_in" />
         <argument
             android:name="model"
             app:argType="com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels$Order" />

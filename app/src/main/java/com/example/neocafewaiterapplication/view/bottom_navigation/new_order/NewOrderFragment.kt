@@ -9,6 +9,7 @@ import com.example.neocafewaiterapplication.databinding.FragmentNewOrderBinding
 import com.example.neocafewaiterapplication.view.root.BaseFragment
 import com.example.neocafewaiterapplication.view.utils.delegates.RecyclerItemClick
 import com.example.neocafewaiterapplication.view.utils.gone
+import com.example.neocafewaiterapplication.view.utils.navigate
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.MainRecyclerViewAdapter
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
 import com.example.neocafewaiterapplication.view.utils.showSnackBar
@@ -41,7 +42,7 @@ class NewOrderFragment : BaseFragment<FragmentNewOrderBinding>(), RecyclerItemCl
     override fun clickListener(model: AllModels) {
         model as AllModels.Table
         if (model.user == null) {
-            navController.navigate(NewOrderFragmentDirections.actionNewOrderFragmentToNewOrderMenu(model.id))
+            navigate(NewOrderFragmentDirections.actionNewOrderFragmentToNewOrderMenu(model.id))
         } else "Стол занят".showSnackBar(binding.cardView4)
     }
 
@@ -51,8 +52,8 @@ class NewOrderFragment : BaseFragment<FragmentNewOrderBinding>(), RecyclerItemCl
 
     override fun setUpAppBar() {
         with(binding.include){
-            notification.setOnClickListener { navController.navigate(NewOrderFragmentDirections.actionNewOrderFragmentToNotificationFragment3()) }
-            user.setOnClickListener { navController.navigate(NewOrderFragmentDirections.actionNewOrderFragmentToUserFragment2()) }
+            notification.setOnClickListener { navigate(NewOrderFragmentDirections.actionNewOrderFragmentToNotificationFragment3()) }
+            user.setOnClickListener { navigate(NewOrderFragmentDirections.actionNewOrderFragmentToUserFragment2()) }
 
         }
 }

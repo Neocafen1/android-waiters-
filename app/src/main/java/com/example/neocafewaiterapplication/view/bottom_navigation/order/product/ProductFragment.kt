@@ -12,6 +12,7 @@ import com.example.neocafewaiterapplication.databinding.FragmentProductBinding
 import com.example.neocafewaiterapplication.view.root.BaseFragment
 import com.example.neocafewaiterapplication.view.utils.alert_dialog.DoneCustomAlertDialog
 import com.example.neocafewaiterapplication.view.utils.logging
+import com.example.neocafewaiterapplication.view.utils.notClickable
 import com.example.neocafewaiterapplication.view.utils.recycler_adapter.MainRecyclerViewAdapter
 import com.example.neocafewaiterapplication.view.utils.sealed_classes.AllModels
 import com.example.neocafewaiterapplication.view.utils.visible
@@ -30,11 +31,20 @@ class ProductFragment : BaseFragment<FragmentProductBinding>() {
         setUpUi(args.model)
         setUpRecycler()
 
+        viewModel.isOrderClosed.observe(viewLifecycleOwner){
+            it?.let {
+                if (it){
+                    viewModel.orders.postValue(AllModels.NeoOrder(mutableListOf<AllModels.Order>()))
+                    viewModel.getOrders(args.status)
+                    DoneCustomAlertDialog("Заказ успешно закрыт").show(childFragmentManager, "TAG")
+                    viewModel.isOrderClosed.postValue(null)
+                }
+            }
+        }
+
         if (args.model.status == "r"){
             binding.closeOrder.visible()
         }
-
-
     }
 
     private fun setUpRecycler() {
@@ -52,19 +62,13 @@ class ProductFragment : BaseFragment<FragmentProductBinding>() {
             time.text = "Открыт в ${order.time}"
             clientName.text = "Клиент: ${order.username}"
             totalPrice.text = "${order.total_sum} сом"
-            closeOrder.setOnClickListener { closeOrder(order.id) }
+            closeOrder.setOnClickListener { closeOrder(order.id)
+            it.notClickable()}
         }
     }
 
     private fun closeOrder(id: Int) {
         viewModel.closeOrder(id)
-        viewModel.isOrderClosed.observe(viewLifecycleOwner){
-            if (it){
-                viewModel.orders.postValue(AllModels.NeoOrder(mutableListOf<AllModels.Order>()))
-                viewModel.getOrders(args.status)
-                DoneCustomAlertDialog("Заказ успешно закрыт").show(childFragmentManager, "TAG")
-            }
-        }
     }
 
 

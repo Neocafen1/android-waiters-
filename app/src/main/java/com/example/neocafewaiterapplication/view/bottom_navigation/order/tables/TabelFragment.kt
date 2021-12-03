@@ -27,6 +27,16 @@ class TabelFragment : BaseFragment<FragmentTabelBinding>(),RecyclerItemClick {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
         viewModel.getTableList()
+
+        viewModel.statusChanged.observe(viewLifecycleOwner){
+            it?.let{
+                if (it){
+                    DoneCustomAlertDialog("Стол освобожден").show(childFragmentManager,"TAG")
+                    viewModel.getTableList()
+                    viewModel.statusChanged.postValue(null)
+                }
+            }
+        }
     }
 
     private fun setUpRecycler() {
@@ -58,9 +68,5 @@ class TabelFragment : BaseFragment<FragmentTabelBinding>(),RecyclerItemClick {
 
     private fun changeTableStatus(table:String){
         viewModel.changeStatusToFree(table)
-        viewModel.statusChanged.observe(viewLifecycleOwner){
-            viewModel.getTableList()
-            DoneCustomAlertDialog("Стол освобожден").show(childFragmentManager,"TAG")
-        }
     }
 }

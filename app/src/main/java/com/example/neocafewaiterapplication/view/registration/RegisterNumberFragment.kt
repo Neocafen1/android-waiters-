@@ -2,6 +2,7 @@ package com.example.neocafewaiterapplication.view.registration
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.neocafewaiterapplication.R
 import com.example.neocafewaiterapplication.databinding.FragmentRegisterNumberBinding
 import com.example.neocafewaiterapplication.view.root.BaseFragment
-import com.example.neocafewaiterapplication.viewModel.registration_vm.RegistrationViewModel
 import com.example.neocafewaiterapplication.view.utils.*
+import com.example.neocafewaiterapplication.viewModel.registration_vm.RegistrationViewModel
 import com.vicmikhailau.maskededittext.MaskedFormatter
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -25,6 +26,7 @@ class RegisterNumberFragment : BaseFragment<FragmentRegisterNumberBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.numberEditText.addTextChangedListener {
+            viewModel.isNumberInBack.postValue(null)
             if (it?.length == 11) {
                 binding.next.apply {
                     isEnabled = true
@@ -33,9 +35,7 @@ class RegisterNumberFragment : BaseFragment<FragmentRegisterNumberBinding>() {
                         R.drawable.button_enable_custom_style
                     )
                 }
-            } else if (it?.length!! >= 1) {
-                binding.numberCode.visible()
-            } else {
+            }else{
                 binding.next.apply {
                     isEnabled = false
                     background = ContextCompat.getDrawable(
@@ -45,22 +45,29 @@ class RegisterNumberFragment : BaseFragment<FragmentRegisterNumberBinding>() {
                 }
             }
         }
-
-        binding.next.setOnClickListener {
-            val formatter = MaskedFormatter("###-###-###").formatString(binding.numberEditText.text.toString())?.unMaskedString
-            checkUserNumber(formatter!!.toInt())
-        }
-
-    }
-
-    private fun checkUserNumber(number: Int) {
-        viewModel.checkNumber(number)
         viewModel.isNumberInBack.observe(viewLifecycleOwner){
-            if (it){
-                findNavController().navigate(RegisterNumberFragmentDirections.actionRegisterNumberFragmentToOTPFragment(number))
+            it?.let {
+                if (it){
+                    val formatter = MaskedFormatter("###-###-###").formatString(binding.numberEditText.text.toString())?.unMaskedString?.toInt()
+                    navigate(RegisterNumberFragmentDirections.actionRegisterNumberFragmentToOTPFragment(formatter!!))
+                }else{
+                    "Такого номера нету в базе данных".showSnackBar(binding.cardView)
+                }
             }
         }
+
+        binding.next.setOnClickListener {
+            checkUserNumber()
+
+        }
+
     }
+
+    private fun checkUserNumber() {
+        val formatter = MaskedFormatter("###-###-###").formatString(binding.numberEditText.text.toString())?.unMaskedString?.toInt()
+        viewModel.checkNumber(formatter!!)
+    }
+
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup?): FragmentRegisterNumberBinding {
         return FragmentRegisterNumberBinding.inflate(inflater)

@@ -22,7 +22,7 @@ interface RegistrationAPI {
     fun updateAccessTokenWithRefresh(@Field("refresh") token: String): Call<AllModels.RefreshResponse>
 
     @FormUrlEncoded
-    @POST
+    @POST("authwaiter/")
     suspend fun checkWaiterNumber(@Field("number") number:Int): Response<Boolean>
 
     @POST
